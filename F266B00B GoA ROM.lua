@@ -410,9 +410,25 @@ if true then
 		end
 	else --Hitlist Testing Thing
 		--Increase stats based on Emblems
-		local baseStats = ReadByte(Save+0x363D) * 2
-		WriteByte(Save+0x24F9,baseStats)
-		WriteByte(Save+0x24FA,baseStats)
+		--local baseStats = ReadByte(Save+0x363D) * 2
+		local emblemCount = ReadByte(Save+0x363D)
+		local str = 0
+		local mag = 0
+
+		for em = 0, emblemCount do
+			if em <= 10 then
+				str = str + 1
+				mag = mag + 1
+			elseif em <= 40 and em > 10 then
+				str = str + 2
+				mag = mag + 2
+			else
+				str = str + 3
+				mag = mag + 3
+			end
+		end
+		WriteByte(Save+0x24F9,str)
+		WriteByte(Save+0x24FA,mag)
 		--------Force equip no exp
 		local NoExpCount = 0 --no exps equipped
 		for Slot = 0,68 do

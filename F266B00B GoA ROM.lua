@@ -363,7 +363,6 @@ function GoA()
 --Clear Conditions
 if true then
 	local ObjectiveCount = ReadShort(BAR(Sys3,0x6,0x4F4),OnPC)
-	print(ObjectiveCount)
 	local ProofCount = 0
 	if ReadByte(Save+0x36B2) > 0 then
 		ProofCount = ProofCount + 1
@@ -381,7 +380,7 @@ if true then
 			SeedCleared = 1
 		end
 	--For Objectives and/or Proofs Win Con
-	else
+	elseif ObjectiveCount == 8 then
 		if ProofCount >= 3 and ReadByte(Save+0x363D) >= 1
 		   and not WinCon1 then --All Proofs Obtained + 1 Objective
 			SeedCleared = SeedCleared + 1
@@ -409,6 +408,22 @@ if true then
 				ConsolePrint("Multiple win cons achieved - Skip to Final Xemnas Active")
 			end
 		end
+	else --Hitlist Testing Thing
+		--Increase stats based on Emblems
+		local baseStats = ReadByte(Save+0x363D) * 2
+		WriteByte(Save+0x24F9,baseStats)
+		WriteByte(Save+0x24FA,baseStats)
+		--------Force equip no exp
+		local NoExpCount = 0 --no exps equipped
+		for Slot = 0,68 do
+			local Current = Save + 0x2544 + 2*Slot
+			local Ability = ReadShort(Current) & 0x0FFF
+			--No Exp Check
+			if Ability == 0x0194 then
+				WriteShort(Current,Ability+0x8000)
+			end
+		end
+		--------Force equip no exp
 	end
 end
 --Garden of Assemblage Rearrangement

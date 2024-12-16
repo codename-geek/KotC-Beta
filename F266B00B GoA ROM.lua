@@ -414,6 +414,7 @@ if true then
 		local emblemCount = ReadByte(Save+0x363D)
 		local str = 0
 		local mag = 0
+		local def = math.floor(emblemCount / 4)
 
 		for em = 0, emblemCount do
 			if em <= 10 then
@@ -429,6 +430,7 @@ if true then
 		end
 		WriteByte(Save+0x24F9,str)
 		WriteByte(Save+0x24FA,mag)
+		WriteByte(Save+0x24FB,def)
 		--------Force equip no exp
 		local NoExpCount = 0 --no exps equipped
 		for Slot = 0,68 do

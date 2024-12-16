@@ -417,10 +417,10 @@ if true then
 		local def = math.floor(emblemCount / 4)
 
 		for em = 0, emblemCount do
-			if em <= 10 then
+			if em <= 12 then
 				str = str + 1
 				mag = mag + 1
-			elseif em <= 40 and em > 10 then
+			elseif em > 12 and em <= 37 then
 				str = str + 2
 				mag = mag + 2
 			else

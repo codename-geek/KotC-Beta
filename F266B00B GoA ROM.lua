@@ -417,10 +417,10 @@ if true then
 		local def = math.floor(emblemCount / 4)
 
 		for em = 0, emblemCount do
-			if em <= 12 then
+			if em <= 15 then
 				str = str + 1
 				mag = mag + 1
-			elseif em > 12 and em <= 37 then
+			elseif em > 15 and em <= 37 then
 				str = str + 2
 				mag = mag + 2
 			else
@@ -431,6 +431,9 @@ if true then
 		WriteByte(Save+0x24F9,str)
 		WriteByte(Save+0x24FA,mag)
 		WriteByte(Save+0x24FB,def)
+		----party members
+		--WriteByte(Save+0x2609,emblemCount+20)
+		----party members
 		--------Force equip no exp
 		local NoExpCount = 0 --no exps equipped
 		for Slot = 0,68 do

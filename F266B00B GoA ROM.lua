@@ -414,13 +414,13 @@ if true then
 		local emblemCount = ReadByte(Save+0x363D)
 		local str = 0
 		local mag = 0
-		local def = math.floor(emblemCount / 4)
+		local def = math.floor(emblemCount / 5)
 
 		for em = 0, emblemCount do
 			if em <= 15 then
 				str = str + 1
 				mag = mag + 1
-			elseif em > 15 and em <= 37 then
+			elseif em > 15 and em <= 35 then
 				str = str + 2
 				mag = mag + 2
 			else

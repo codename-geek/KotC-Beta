@@ -415,6 +415,8 @@ if true then
 		local str = 0
 		local mag = 0
 		local def = math.floor(emblemCount / 5)
+		local def_p = math.floor(emblemCount / 3)
+		local app = emblemCount * 3
 
 		for em = 0, emblemCount do
 			if em <= 15 then
@@ -431,9 +433,20 @@ if true then
 		WriteByte(Save+0x24F9,str)
 		WriteByte(Save+0x24FA,mag)
 		WriteByte(Save+0x24FB,def)
-		----party members
-		--WriteByte(Save+0x2609,emblemCount+20)
-		----party members
+		WriteByte(Save+0x24F8,app)
+		----party members, add defense
+		WriteByte(Save+0x260F,def_p)
+		WriteByte(Save+0x2723,def_p)
+		WriteByte(Save+0x294B,def_p)
+		WriteByte(Save+0x2A5F,def_p)
+		WriteByte(Save+0x2B73,def_p)
+		WriteByte(Save+0x2C87,def_p)
+		WriteByte(Save+0x2D9B,def_p)
+		WriteByte(Save+0x2EAF,def_p)
+		WriteByte(Save+0x2FC3,def_p)
+		WriteByte(Save+0x30D7,def_p)
+		WriteByte(Save+0x31EB,def_p)
+		----party members, add defense
 		--------Force equip no exp
 		local NoExpCount = 0 --no exps equipped
 		for Slot = 0,68 do

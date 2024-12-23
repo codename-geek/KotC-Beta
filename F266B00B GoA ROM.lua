@@ -414,8 +414,8 @@ if true then
 		local emblemCount = ReadByte(Save+0x363D)
 		local str = 0
 		local mag = 0
-		local def = math.floor(emblemCount / 5)
-		local def_p = math.floor(emblemCount / 3)
+		local def = math.floor(emblemCount / 4)
+		local def_p = math.floor(emblemCount / 2)
 		local app = emblemCount * 3
 
 		for em = 0, emblemCount do
@@ -433,7 +433,7 @@ if true then
 		WriteByte(Save+0x24F9,str)
 		WriteByte(Save+0x24FA,mag)
 		WriteByte(Save+0x24FB,def)
-		WriteByte(Save+0x24F8,app)
+		WriteByte(Save+0x24F8,50 + app)
 		----party members, add defense
 		WriteByte(Save+0x260F,def_p)
 		WriteByte(Save+0x2723,def_p)

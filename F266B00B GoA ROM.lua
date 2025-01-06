@@ -14,17 +14,18 @@ WinCon1 = false
 WinCon2 = false
 WinCon3 = false
 CheckCount = 0
-lastInput1 = 0
-lastInput2 = 0
-lastRoom = 0
-lastWorld = 0
+
+bulky_Room = 0x00
+bulky_lastRoom = 0x00
+bulky_World = 0x00
+bulky_lastWorld = 0x00
 end
 
 function GetVersion() --Define anchor addresses
 if (GAME_ID == 0xF266B00B or GAME_ID == 0xFAF99301) and ENGINE_TYPE == "ENGINE" then --PCSX2
 	OnPC = false
 	GameVersion = 1
-	print('GoA PS2 Version - Custom Win Con Edits')
+	print('GoA PS2 Version - KotC GoA')
 	Now = 0x032BAE0 --Current Location
 	Sve = 0x1D5A970 --Saved Location
 	Save = 0x032BB30 --Save File
@@ -66,7 +67,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 	OnPC = true
 	if ReadString(0x09A92F0,4) == 'KH2J' then --EGS
 		GameVersion = 2
-		print('GoA Epic Version - Custom Win Con Edits')
+		print('GoA Epic Version (v.9) - KotC GoA')
 		Now = 0x0716DF8
 		Sve = 0x2A0BF80
 		Save = 0x09A92F0
@@ -104,10 +105,9 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF2C40
-		inputAddr = 0x29FAD30
 	elseif ReadString(0x09A9830,4) == 'KH2J' then --Steam Global
 		GameVersion = 3
-		print('GoA Steam Global Version - Custom Win Con Edits')
+		print('GoA Steam Global Version (Downpatch) - KotC GoA')
 		Now = 0x0717008
 		Sve = 0x2A0C4C0
 		Save = 0x09A9830
@@ -145,10 +145,9 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF3340
-		inputAddr = 0xBF3120
 	elseif ReadString(0x09A8830,4) == 'KH2J' then --Steam JP
 		GameVersion = 4
-		print('GoA Steam JP Version - Custom Win Con Edits')
+		print('GoA Steam JP Version (Downpatch) - KotC GoA')
 		Now = 0x0716008
 		Sve = 0x2A0B4C0
 		Save = 0x09A8830
@@ -186,7 +185,126 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF2340
-		inputAddr = 0xBF2120
+	elseif ReadString(0x9A9330,4) == 'KH2J' then --EGS
+		GameVersion = 2
+		print('GoA Epic Version (v.10) - KotC GoA')
+		Now = 0x0716DF8
+		Sve = 0x2A0BFC0
+		Save = 0x09A9330
+		Obj0Pointer = 0x2A24AB0
+		Sys3Pointer = 0x2AE58D0
+		Btl0Pointer = 0x2AE58D8
+		ARDPointer = 0x2A0F2A8
+		Music = 0x0ABA7C4
+		Pause = 0x0ABB2F8
+		React = 0x2A10BE2
+		Cntrl = 0x2A16C68
+		Timer = 0x0ABB2D0
+		Songs = 0x0B657F4
+		GScre = 0x072AEB0
+		GMdal = 0x072B044
+		GKill = 0x0AF6BC6
+		CamTyp = 0x0718A98
+		GamSpd = 0x0717214
+		CutNow = 0x0B64A18
+		CutLen = 0x0B64A34
+		CutSkp = 0x0B64A1C
+		BtlTyp = 0x2A10E84
+		BtlEnd = 0x2A0F760
+		TxtBox = 0x074DCB0
+		DemCln = 0x2A0F334
+		Slot1    = 0x2A23018
+		NextSlot = 0x278
+		Point1   = 0x2A0F4C8
+		NxtPoint = 0x50
+		Gauge1   = 0x2A0F5B8
+		NxtGauge = 0x48
+		Menu1    = 0x2A10B90
+		NextMenu = 0x8
+		Obj0 = ReadLong(Obj0Pointer)
+		Sys3 = ReadLong(Sys3Pointer)
+		Btl0 = ReadLong(Btl0Pointer)
+		MSN = 0x0BF2C80
+	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam Global
+		GameVersion = 3
+		print('GoA Steam Global Version (Updated) - KotC GoA')
+		Now = 0x0717008
+		Sve = 0x2A0C540
+		Save = 0x09A98B0
+		Obj0Pointer = 0x2A25030
+		Sys3Pointer = 0x2AE5E50
+		Btl0Pointer = 0x2AE5E58
+		ARDPointer = 0x2A0F828
+		Music = 0x0ABAD44
+		Pause = 0x0ABB878
+		React = 0x2A11162
+		Cntrl = 0x2A171E8
+		Timer = 0x0ABB850
+		Songs = 0x0B65D44
+		GScre = 0x072B130
+		GMdal = 0x072B2C4
+		GKill = 0x0AF7146
+		CamTyp = 0x0718CA8
+		GamSpd = 0x0717424
+		CutNow = 0x0B64F98
+		CutLen = 0x0B64FB4
+		CutSkp = 0x0B64F9C
+		BtlTyp = 0x2A11404
+		BtlEnd = 0x2A0FCE0
+		TxtBox = 0x074DF20
+		DemCln = 0x2A0F8B4
+		Slot1    = 0x2A23598
+		NextSlot = 0x278
+		Point1   = 0x2A0FA48
+		NxtPoint = 0x50
+		Gauge1   = 0x2A0FB38
+		NxtGauge = 0x48
+		Menu1    = 0x2A11110
+		NextMenu = 0x8
+		Obj0 = ReadLong(Obj0Pointer)
+		Sys3 = ReadLong(Sys3Pointer)
+		Btl0 = ReadLong(Btl0Pointer)
+		MSN = 0x0BF33C0
+	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam JP (same as Global for now)
+		GameVersion = 4
+		print('GoA Steam JP Version (Updated) - KotC GoA')
+		Now = 0x0717008
+		Sve = 0x2A0C540
+		Save = 0x09A98B0
+		Obj0Pointer = 0x2A25030
+		Sys3Pointer = 0x2AE5E50
+		Btl0Pointer = 0x2AE5E58
+		ARDPointer = 0x2A0F828
+		Music = 0x0ABAD44
+		Pause = 0x0ABB878
+		React = 0x2A11162
+		Cntrl = 0x2A171E8
+		Timer = 0x0ABB850
+		Songs = 0x0B65D74
+		GScre = 0x072B130
+		GMdal = 0x072B2C4
+		GKill = 0x0AF7146
+		CamTyp = 0x0718CA8
+		GamSpd = 0x0717424
+		CutNow = 0x0B64F98
+		CutLen = 0x0B64FB4
+		CutSkp = 0x0B64F9C
+		BtlTyp = 0x2A11404
+		BtlEnd = 0x2A0FCE0
+		TxtBox = 0x074DF20
+		DemCln = 0x2A0F8B4
+		Slot1    = 0x2A23598
+		NextSlot = 0x278
+		Point1   = 0x2A0FA48
+		NxtPoint = 0x50
+		Gauge1   = 0x2A0FB38
+		NxtGauge = 0x48
+		Menu1    = 0x2A11110
+		NextMenu = 0x8
+		Obj0 = ReadLong(Obj0Pointer)
+		Sys3 = ReadLong(Sys3Pointer)
+		Btl0 = ReadLong(Btl0Pointer)
+		MSN = 0x0BF33C0
 	end
 end
 if GameVersion ~= 0 then
@@ -376,46 +494,48 @@ if true then
 
 	--For Normal 3 Proof
 	if ObjectiveCount == 0 then
+		NoExp()
 		if ProofCount >= 3 then --All Proofs Obtained
 			SeedCleared = 1
 		end
 	--For Objectives and/or Proofs Win Con
 	elseif ObjectiveCount == 8 then
+		NoExp()
 		if ProofCount >= 3 and ReadByte(Save+0x363D) >= 1
 		   and not WinCon1 then --All Proofs Obtained + 1 Objective
 			SeedCleared = SeedCleared + 1
 			WinCon1 = true
-			ConsolePrint("Win con 1 achieved - 3 Proofs + 1 Objective")
+			print("Win con 1 achieved - 3 Proofs + 1 Objective")
 			if WinCon2 or WinCon3 then
-				ConsolePrint("Multiple win cons achieved - Skip to Final Xemnas Active")
+				print("Multiple win cons achieved - Skip to Final Xemnas Active")
 			end
 		end
 		if ProofCount >= 1 and ReadByte(Save+0x363D) >= ObjectiveCount - 2
 		   and not WinCon2 then --At least 1 Proof + Requisite Objective Count Achieved - 2
 			SeedCleared = SeedCleared + 1
 			WinCon2 = true
-			ConsolePrint("Win con 2 achieved - 1 Proofs + 6 Objectives")
+			print("Win con 2 achieved - 1 Proofs + 6 Objectives")
 			if WinCon1 or WinCon3 then
-				ConsolePrint("Multiple win cons achieved - Skip to Final Xemnas Active")
+				print("Multiple win cons achieved - Skip to Final Xemnas Active")
 			end
 		end
 		if (ReadByte(Save+0x363D) + ReadByte(Save+0x360C)) >= ObjectiveCount
 		   and not WinCon3 then --Requisite Objective Count Achieved (+"ignored" first-visit bosses)
 			SeedCleared = SeedCleared + 1
 			WinCon3 = true
-			ConsolePrint("Win con 3 achieved - 8 Objectives")
+			print("Win con 3 achieved - 8 Objectives")
 			if WinCon1 or WinCon2 then
-				ConsolePrint("Multiple win cons achieved - Skip to Final Xemnas Active")
+				print("Multiple win cons achieved - Skip to Final Xemnas Active")
 			end
 		end
-	else --Hitlist Testing Thing
+	--For Emblem Hitlist
+	else
 		--Increase stats based on Emblems
-		--local baseStats = ReadByte(Save+0x363D) * 2
 		local emblemCount = ReadByte(Save+0x363D)
 		local str = 0
 		local mag = 0
-		local def = math.floor(emblemCount / 4)
-		local def_p = math.floor(emblemCount / 2)
+		local def = math.floor(emblemCount / 3) --Sora
+		local def_p = math.floor(emblemCount / 2) --Party Members
 		local app = emblemCount * 3
 
 		for em = 0, emblemCount do
@@ -453,8 +573,9 @@ if true then
 			local Current = Save + 0x2544 + 2*Slot
 			local Ability = ReadShort(Current) & 0x0FFF
 			--No Exp Check
-			if Ability == 0x0194 then
+			if Ability == 0x0194 and NoExpCount == 0 then
 				WriteShort(Current,Ability+0x8000)
+				NoExpCount = NoExpCount + 1
 			end
 		end
 		--------Force equip no exp
@@ -471,95 +592,35 @@ if Place == 0x1A04 then
 		WriteShort(BAR(ARD,0x05,0x25C),0x779,OnPC) --Radiant Garden
 	end
 end
-if ReadInt(inputAddr) ~= lastInput1 then
-	lastInput2 = lastInput1
-	lastInput1 = ReadInt(inputAddr)
-end
 --World Map -> Garden of Assemblage
 if Place == 0x000F then
 	local WarpDoor = false
-	local ObjCnt = ReadShort(BAR(Sys3,0x6,0x4F4),OnPC) --done for hitlist stuff
 	if Door == 0x0C then --The World that Never Was
 		WarpDoor = 0x15
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35C1) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35C1,ReadByte(Save+0x35C1)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Way to the Dawn")
-		end
 	elseif Door == 0x03 then --Land of Dragons
 		WarpDoor = 0x16
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35AF) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35AF,ReadByte(Save+0x35AF)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Sword of the Ancestors")
-		end
 	elseif Door == 0x04 then --Beast's Castle
 		WarpDoor = 0x17
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35B3) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35B3,ReadByte(Save+0x35B3)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Beast's Claw")
-		end
 	elseif Door == 0x09 then --Halloween Town	
 		WarpDoor = 0x18
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35B4) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35B4,ReadByte(Save+0x35B4)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Bone Fist")
-		end
 	elseif Door == 0x0A then --Agrabah
 		WarpDoor = 0x19
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35C0) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35C0,ReadByte(Save+0x35C0)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Scimitar")
-		end
 	elseif Door == 0x05 then --Olympus Coliseum
 		WarpDoor = 0x1A
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35AE) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35AE,ReadByte(Save+0x35AE)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Battlefields of War")
-		end
 	elseif Door == 0x0B then --Pride Lands
 		WarpDoor = 0x1B
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35B5) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35B5,ReadByte(Save+0x35B5)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Proud Fang")
-		end
 	elseif Door == 0x01 then --Twilight Town
 		if ReadByte(Save+0x1CFF) == 8 then --Twilight Town
 			WarpDoor = 0x1C
-			if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and (ReadByte(Save+0x3649) == 1 or ReadByte(Save+0x3649) == 2) and ObjCnt == 8 then
-				WriteByte(Save+0x3649,ReadByte(Save+0x3649)+1)
-				WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-				print("Converted Completion Mark to Visit Unlock - Ice Cream")
-			end
 		elseif ReadByte(Save+0x1CFF) == 13 then --Simulated Twilight Town
 			WarpDoor = 0x21
 		end
 	elseif Door == 0x02 then --Hollow Bastion
 		WarpDoor = 0x1D
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x3643) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x3643,ReadByte(Save+0x3643)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Membership Card")
-		end
 	elseif Door == 0x08 then --Port Royal
 		WarpDoor = 0x1E
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35B6) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x35B6,ReadByte(Save+0x35B6)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Skill and Crossbones")
-		end
 	elseif Door == 0x06 then --Disney Castle
 		WarpDoor = 0x1F
-		if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x365D) == 1 and ObjCnt == 8 then
-			WriteByte(Save+0x365D,ReadByte(Save+0x365D)+1)
-			WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-			print("Converted Completion Mark to Visit Unlock - Royal Summons")
-		end
 	elseif Door == 0x07 then --Atlantica
 		WarpDoor = 0x01
 	end
@@ -567,21 +628,6 @@ if Place == 0x000F then
 		Warp(0x04,0x1A,WarpDoor)
 	end
 end
-if World == 4 and (lastWorld == 17) then -- Space Paranoids
-	if lastInput2 == 2048 and lastInput1 == 0 and ReadByte(Save+0x363D) > 1 and ReadByte(Save+0x35C2) == 1 and ObjCnt == 8 then
-		WriteByte(Save+0x35C2,ReadByte(Save+0x35C2)+1)
-		WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-		print("Converted Completion Mark to Visit Unlock - Identity Disk")
-	end
-elseif World == 4 and (lastWorld == 9) then -- 100 Acre Wood
-	if (lastInput2 == 33557504 and lastInput1 == 0) and ReadByte(Save+0x363D) > 1 and (ReadByte(Save+0x3598) >= 1 or ReadByte(Save+0x3598) <= 4) and ObjCnt == 8 then
-		WriteByte(Save+0x3598,ReadByte(Save+0x3598)+1)
-		WriteByte(Save+0x363D,ReadByte(Save+0x363D)-2)
-		print("Converted Completion Mark to Visit Unlock - Torn Pages")
-	end
-end
-lastRoom = Room
-lastWorld = World
 --Visit Locks
 if true then
 	--Namine's Sketches
@@ -1050,14 +1096,22 @@ end
 --Show all items in shops (ASSEMBLY edit)
 if not OnPC then
 	WriteInt(0x264250,0)
-elseif ReadLong(0x2FAA22) == 0x43B70F0D74D68541 then --Epic Global
+elseif ReadLong(0x2FAA22) == 0x43B70F0D74D68541 then --Epic Global v.9
 	WriteByte(0x2FAA26,0)
-elseif ReadLong(0x2FA682) == 0x43B70F0D74D68541 then --Epic JP
+elseif ReadLong(0x2FA682) == 0x43B70F0D74D68541 then --Epic JP v.9
 	WriteByte(0x2FA686,0)
-elseif ReadLong(0x2FB562) == 0x43B70F0D74D68541 then --Steam Global
+elseif ReadLong(0x2FB562) == 0x43B70F0D74D68541 then --Steam Global Downpatch
 	WriteByte(0x2FB566,0)
-elseif ReadLong(0x2FB2E2) == 0x43B70F0D74D68541 then --Steam JP
+elseif ReadLong(0x2FB2E2) == 0x43B70F0D74D68541 then --Steam JP Downpatch
 	WriteByte(0x2FB2E6,0)
+elseif ReadLong(0x2FAD62) == 0x43B70F0D74D68541 then --Epic Global v.10
+	WriteByte(0x2FAD66,0)
+elseif ReadLong(0x2FABA2) == 0x43B70F0D74D68541 then --Epic JP v.10
+	WriteByte(0x2FABA6,0)
+elseif ReadLong(0x2FB8A2) == 0x43B70F0D74D68541 then --Steam Global Updated
+	WriteByte(0x2FB8A6,0)
+elseif ReadLong(0x2FB622) == 0x43B70F0D74D68541 then --Steam JP Updated
+	WriteByte(0x2FB626,0)
 end
 --Alternate Party Models (adding new UCM using MEMT causes problems when shopping)
 if World == 0x0C and Place ~= 0x070C then --Mage & Knight (KH I)
@@ -3182,6 +3236,45 @@ function DropCounter()
 	WriteByte(Save+0x363D,ReadByte(Save+0x363D)-1)
 	WriteByte(Save+0x360A,ReadByte(Save+0x360A)-1)
 	WriteByte(Save+0x360C,ReadByte(Save+0x360C)+1)
+end
+
+function NoExp()
+	--------Checks for Current room
+	--if going to a new room
+    if bulky_World ~= ReadByte(Now + 0x00) or bulky_Room ~= ReadByte(Now + 0x01) then
+		bulky_lastWorld = bulky_World
+		bulky_lastRoom = bulky_Room
+	end
+	bulky_World = ReadByte(Now + 0x00)
+	bulky_Room = ReadByte(Now + 0x01)
+
+	local equip = false
+	if bulky_World == 0x02 and bulky_Room == 0x21 and --in Station of Calling
+	    ((bulky_lastWorld == 0x04 and bulky_lastRoom == 0x1A) or --GoA
+	    (bulky_lastWorld == 0x12 and bulky_lastRoom == 0x1B) or --Buildings
+		(bulky_lastWorld == 0x12 and bulky_lastRoom == 0x1C)) then --Other Buildings
+		--print("In promise charm room")
+		equip = true
+	end
+
+	--------Force equip no exp
+    local NoExpCount = 0 --no exps equipped
+    for Slot = 0,68 do
+        local Current = Save + 0x2544 + 2*Slot
+        local Ability = ReadShort(Current) & 0x0FFF
+		--No Exp Check
+        if Ability == 0x0194 then
+			--if not equipped and supposed to equip
+			if equip then
+                WriteShort(Current,Ability+0x8000)
+				--print("equipping")
+            else
+				WriteShort(Current,Ability)
+				--print("Unequipping")
+			end
+		end
+    end
+	--------Force equip no exp
 end
 
 --[[Unused Bytes Repurposed:

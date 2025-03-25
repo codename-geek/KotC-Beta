@@ -3190,16 +3190,14 @@ CheckCount = magicCount + truePageCount + formCount + summonCount + abilityCount
 end
 
 function ObjFix()
---Track if Objective comes from a first visit boss
---Remove a completion mark if a 4th (or more) completion mark is received from a first visit boss
+--Used for 6 Objectives + 1 Proof win condition for Path
+--Converts Completion Marks into Broken Marks (crystal ball -> letter) when:
+-- - 3 first visit objectives are completed
+-- - 2 objectives in the same world are completed
 --0x360A - count how many objective marks have been obtained
 --0x360B - count how many first visit boss objective marks have been obtained
---0x360C - count how many bosses with objective marks have been completed that were ignored
---0x360D - STT1/STT2/HB1/HB2/BC1/BC2/OC1/OC2
---0x360E - AG1/AG2/LoD1/LoD2/PL1/PL2/HT1/HT2
---0x3613 - PR1/PR2/SP1/SP2/TWTNW1/TWTNW2
+--0x360C - unused
 
-local hasRemoved = false
 while ReadByte(Save+0x363D) > ReadByte(Save+0x360A) do
 	WriteByte(Save+0x360A,ReadByte(Save+0x360A)+1)
 	--If boss is a first visit boss, increment the counters
@@ -3250,9 +3248,9 @@ while ReadByte(Save+0x363D) > ReadByte(Save+0x360A) do
 		FVB = true
 	end
 	if FVB then
-		--WriteByte(Save+0x360A,ReadByte(Save+0x360A)+1)
 		WriteByte(Save+0x360B,ReadByte(Save+0x360B)+1)
-		--If you have done 3 first visit bosses already, remove 1 completion mark and 1 boss, add 1 to skipped bosses
+		--If this is the 3rd first visit boss,
+		--replace all other first visit completion marks with broken marks (letters)
 		if ReadByte(Save+0x360B) >= 3 then
 			ReplaceFirstVisitObjectives()
 		end
@@ -3262,6 +3260,7 @@ while ReadByte(Save+0x363D) > ReadByte(Save+0x360A) do
 	--0x360D - STT1/STT2/HB1/HB2/BC1/BC2/OC1/OC2
 	--0x360E - AG1/AG2/LoD1/LoD2/PL1/PL2/HT1/HT2
 	--0x3613 - PR1/PR2/SP1/SP2/TWTNW1/TWTNW2
+	--When 2 bosses in the same world are done, replace remaining completion marks with broken marks (letters)
 	--STT
 	if World == 0x02 and Room == 0x22 and Btl == 0x9D then --Twilight Thorn
 		BitOr(Save+0x360D,0x1)
@@ -3418,17 +3417,10 @@ while ReadByte(Save+0x363D) > ReadByte(Save+0x360A) do
 			BitOr(Save+0x3613,0x20)
 		end
 	end
-	if ReadByte(Save+0x3613)&0x10 == 0x10 and ReadByte(Save+0x3613)&0x20 == 0x20 and not hasRemoved then
+	if ReadByte(Save+0x3613)&0x10 == 0x10 and ReadByte(Save+0x3613)&0x20 == 0x20 then
 		ReplaceSecondVisitObjectives("TWTNW")
 	end
 end
---Show skipped count by number of (reskinned) Orichalcum+'s
---WriteByte(Save+0x363B,ReadByte(Save+0x360C))
-end
-function DropCounter()
-	WriteByte(Save+0x363D,ReadByte(Save+0x363D)-1)
-	WriteByte(Save+0x360A,ReadByte(Save+0x360A)-1)
-	WriteByte(Save+0x360C,ReadByte(Save+0x360C)+1)
 end
 
 function NoExp()

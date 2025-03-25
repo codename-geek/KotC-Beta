@@ -546,7 +546,7 @@ if true then
 				WriteInfoBox('Win con 2 achieved - 1 Proof + 6 Objectives')
 			end
 		end
-		if (ReadByte(Save+0x363D) + ReadByte(Save+0x360C)) >= ObjectiveCount
+		if (ReadByte(Save+0x363D) + ReadByte(Save+0x3641)) >= ObjectiveCount
 		   and not WinCon3 then --Requisite Objective Count Achieved (+"ignored" first-visit bosses)
 			SeedCleared = SeedCleared + 1
 			WinCon3 = true

@@ -3590,7 +3590,7 @@ end
 
 function WinConInfoBox() --Used to check when the wincon is achieved at when to display it
 	if ReadByte(Cntrl) == 0 and (ReadByte(BtlTyp) == 0 or ReadByte(BtlTyp) == 1)
-	   and doInfoBox and ReadByte(IsLoaded) ~= 0 then
+	   and doInfoBox and ReadByte(IsLoaded) == 0 then
 		infoBoxTick = infoBoxTick + 1
 		if infoBoxTick > 15 then --after 15 frames?
 			print(infoBoxText)

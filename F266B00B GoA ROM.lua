@@ -7,7 +7,7 @@ LUAGUI_DESC = 'A GoA build for use with the Randomizer. Requires ROM patching.'
 
 function _OnInit()
 GameVersion = 0
-print('GoA v1.54.3')
+print('GoA v1.54.4')
 GoAOffset = 0x7C
 SeedCleared = 0
 WinCon1 = false
@@ -229,7 +229,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Obj0 = ReadLong(Obj0Pointer)
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
-		MSN = 0x0BF2C80
+		MSN = BASE_ADDR + 0x0BF2C80
 		IsLoaded = 0x09BA310
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam Global
 		GameVersion = 6
@@ -270,7 +270,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Obj0 = ReadLong(Obj0Pointer)
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
-		MSN = 0x0BF33C0
+		MSN = BASE_ADDR + 0x0BF33C0
 		IsLoaded = 0x09BA850
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam JP (same as Global for now)
 		GameVersion = 7
@@ -311,7 +311,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Obj0 = ReadLong(Obj0Pointer)
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
-		MSN = 0x0BF33C0
+		MSN = BASE_ADDR + 0x0BF33C0
 		IsLoaded = 0x09B9850
 	end
 end
@@ -435,8 +435,6 @@ if true then --Define current values for common addresses
 	end
 end
 
-ABN()
-
 NewGame()
 GoA()
 TWtNW()
@@ -456,7 +454,6 @@ AW()
 At()
 Data()
 
-ObjFix()
 WinConInfoBox()
 end
 
@@ -520,7 +517,9 @@ if true then
 		end
 	--For Objectives and/or Proofs Win Con
 	elseif ObjectiveCount == 8 then
+		ObjFix()
 		NoExp()
+		ABN()
 		if ProofCount >= 3 and ReadByte(Save+0x363D) >= 1
 		   and not WinCon1 then --All Proofs Obtained + 1 Objective
 			SeedCleared = SeedCleared + 1
@@ -558,13 +557,14 @@ if true then
 		end
 	--For Emblem Hitlist
 	else
+		NoExp()
 		--Increase stats based on Emblems
 		local emblemCount = ReadByte(Save+0x363D)
 		local str = 0
 		local mag = 0
-		local def = math.floor(emblemCount / 3) --Sora
+		--local def = math.floor(emblemCount / 3) --Sora
 		local def_p = math.floor(emblemCount / 2) --Party Members
-		local app = emblemCount * 3
+		--local app = emblemCount * 3
 
 		for em = 0, emblemCount do
 			if em <= 15 then
@@ -580,8 +580,8 @@ if true then
 		end
 		WriteByte(Save+0x24F9,str)
 		WriteByte(Save+0x24FA,mag)
-		WriteByte(Save+0x24FB,def)
-		WriteByte(Save+0x24F8,50 + app)
+		--WriteByte(Save+0x24FB,def)
+		--WriteByte(Save+0x24F8,50 + app)
 		----party members, add defense
 		WriteByte(Save+0x260F,def_p)
 		WriteByte(Save+0x2723,def_p)
@@ -596,17 +596,20 @@ if true then
 		WriteByte(Save+0x31EB,def_p)
 		----party members, add defense
 		--------Force equip no exp
-		local NoExpCount = 0 --no exps equipped
-		for Slot = 0,68 do
-			local Current = Save + 0x2544 + 2*Slot
-			local Ability = ReadShort(Current) & 0x0FFF
-			--No Exp Check
-			if Ability == 0x0194 and NoExpCount == 0 then
-				WriteShort(Current,Ability+0x8000)
-				NoExpCount = NoExpCount + 1
-			end
-		end
+		--local NoExpCount = 0 --no exps equipped
+		--for Slot = 0,68 do
+		--	local Current = Save + 0x2544 + 2*Slot
+		--	local Ability = ReadShort(Current) & 0x0FFF
+		--	--No Exp Check
+		--	if Ability == 0x0194 and NoExpCount == 0 then
+		--		WriteShort(Current,Ability+0x8000)
+		--		NoExpCount = NoExpCount + 1
+		--	end
+		--end
 		--------Force equip no exp
+		if ReadByte(Save+0x363D) >= ObjectiveCount then --Requisite Objective Count Achieved
+			SeedCleared = 1
+		end
 	end
 end
 --Garden of Assemblage Rearrangement
@@ -975,12 +978,12 @@ while ReadByte(Save+0x3695) > ReadByte(Save+0x35C5) do
 end
 --DUMMY 23 = Maximum HP Increased!
 while ReadByte(Save+0x3671) > 0 do
-	local Bonus
-	if ReadByte(Save+0x2498) < 3 then --Non-Critical
-		Bonus = 5
-	else --Critical
-		Bonus = 2
-	end
+	local Bonus = 2
+	--if ReadByte(Save+0x2498) < 3 then --Non-Critical
+	--	Bonus = 5
+	--else --Critical
+	--	Bonus = 2
+	--end
 	WriteInt(Slot1+0x000,ReadInt(Slot1+0x000)+Bonus)
 	WriteInt(Slot1+0x004,ReadInt(Slot1+0x004)+Bonus)
 	WriteByte(Save+0x3671,ReadByte(Save+0x3671)-1)
@@ -3251,7 +3254,7 @@ while ReadByte(Save+0x363D) > ReadByte(Save+0x360A) do
 		WriteByte(Save+0x360B,ReadByte(Save+0x360B)+1)
 		--If this is the 3rd first visit boss,
 		--replace all other first visit completion marks with broken marks (letters)
-		if ReadByte(Save+0x360B) >= 3 then
+		if ReadByte(Save+0x360B) >= 2 then
 			ReplaceFirstVisitObjectives()
 		end
 	end

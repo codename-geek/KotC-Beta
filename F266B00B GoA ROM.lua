@@ -3645,10 +3645,20 @@ function SilverReplaceObjectives()
 		print("Zexion")
 		WriteInt(BAR(Btl0, 0x6, 0xA10), ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) + 2, OnPC)
 	end
+	--Storm Rider
+	if ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) & 363 == 363 then
+		print("Storm Rider")
+		WriteInt(BAR(Btl0, 0x6, 0x1C0), ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) + 2, OnPC)
+	end
 	--Data Xigbar
 	if ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) & 363 == 363 then
 		print("Data Xigbar")
 		WriteShort(BAR(Sys3, 0x7, 0x13C2), ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) + 2, OnPC)
+	end
+	--Groundshaker
+	if ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) & 363 == 363 then
+		print("Groundshaker")
+		WriteInt(BAR(Btl0, 0x6, 0x4D0), ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) + 2, OnPC)
 	end
 	--Data Saix
 	if ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 363 == 363 then
@@ -3665,10 +3675,20 @@ function SilverReplaceObjectives()
 		print("Vexen")
 		WriteInt(BAR(Btl0, 0x6, 0x9B0), ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) + 2, OnPC)
 	end
+	--MCP
+	if ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) & 363 == 363 then
+		print("MCP")
+		WriteInt(BAR(Btl0, 0x6, 0x530), ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) + 2, OnPC)
+	end
 	--Larxene
 	if ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) & 363 == 363 then
 		print("Larxene")
 		WriteInt(BAR(Btl0, 0x6, 0xA70), ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) + 2, OnPC)
+	end
+	--Data Axel
+	if ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) & 363 == 363 then
+		print("Data Axel")
+		WriteShort(BAR(Sys3, 0x7, 0x13AA), ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) + 2, OnPC)
 	end
 	--Story Xaldin
 	if ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) & 363 == 363 then
@@ -3680,10 +3700,20 @@ function SilverReplaceObjectives()
 		print("Data Xaldin")
 		WriteShort(BAR(Sys3, 0x7, 0x139E), ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) + 2, OnPC)
 	end
+	--Genie Jafar
+	if ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) & 363 == 363 then
+		print("Genie Jafar")
+		WriteInt(BAR(Btl0, 0x6, 0x230), ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) + 2, OnPC)
+	end
 	--Lexaeus
 	if ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) & 363 == 363 then
 		print("Lexaeus")
 		WriteInt(BAR(Btl0, 0x6, 0x9E0), ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) + 2, OnPC)
+	end
+	--GR 1
+	if ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) & 363 == 363 then
+		print("GR 1")
+		WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 2, OnPC)
 	end
 	--GR 2
 	if ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) & 363 == 363 then
@@ -3694,16 +3724,6 @@ function SilverReplaceObjectives()
 	if ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 363 == 363 then
 		print("Data Luxord")
 		WriteShort(BAR(Sys3, 0x7, 0x13DA), ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) + 2, OnPC)
-	end
-	--Story Luxord
-	if ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 363 == 363 then
-		print("Story Luxord")
-		WriteInt(BAR(Btl0, 0x6, 0x410), ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) + 2, OnPC)
-	end
-	--Story Saix
-	if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 363 == 363 then
-		print("Story Saix")
-		WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 2, OnPC)
 	end
 	--Story Xemnas 1
 	if ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 363 == 363 then

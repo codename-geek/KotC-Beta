@@ -1,4 +1,4 @@
-title: (BETA) King of the Crown Tourney Mod Pack v7.2
+title: (BETA) King of the Crown Tourney Mod Pack v8.1
 description: ------------------------------------------------------ Place above the GoA | For Steam/Epic Version ------------------------------------------------------ 1234567890num's PS2 Duck Flare | Sonicshadowsilver's Cutscene Skipper | GhostTheBoo's Accurate Growth Text | Topaz's Information Box | Geek's Custom GoA | Geek's Custom AntiCheese | Geek's Drive Adjustments | Geek's Bonus Speed Up
 assets:
 # Lua Scripts
@@ -45,7 +45,15 @@ assets:
     source:
     - name: msg/sys.yml
       language: en
-#Orichalcum+ icon replacement
+# Crystal Orb/Tournament Poster/Letter icon replacement
+- name: remastered/itempic/item-226.imd/-0.dds
+  method: copy
+  source:
+  - name: imgs/silvermark.dds
+- name: remastered/itempic/item-228.imd/-0.dds
+  method: copy
+  source:
+  - name: imgs/goldmark.dds
 - name: remastered/itempic/item-230.imd/-0.dds
   method: copy
   source:

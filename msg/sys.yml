@@ -1,3 +1,31 @@
+- id: 0x3B0B
+  en: Silver Completion Mark
+  jp: Silver Completion Mark
+- id: 0x3B0C
+  en: 'A Silver Objective Completion Mark.
+
+    Awarded for beating First-Visit bosses.
+
+    Only 2 of these can be obtained'
+  jp: 'A Silver Objective Completion Mark.
+
+    Awarded for beating First-Visit bosses.
+
+    Only 2 of these can be obtained'
+- id: 0x3B0F
+  en: Gold Completion Mark
+  jp: Gold Completion Mark
+- id: 0x3B10
+  en: 'A Gold Objective Completion Mark. Awarded
+
+    for beating Second-Visit or AS/Data bosses. Only
+
+    2 of these can be obtained per world.'
+  jp: 'A Gold Objective Completion Mark. Awarded
+
+    for beating Second-Visit or AS/Data bosses. Only
+
+    2 of these can be obtained per world.'
 - id: 0x3B13
   en: Broken Mark
   jp: Broken Mark

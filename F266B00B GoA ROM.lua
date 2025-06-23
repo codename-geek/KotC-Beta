@@ -3201,14 +3201,14 @@ end
 
 function ObjFix()
 --Used for 6 Objectives + 1 Proof win condition for Path
---Converts Completion Marks into Broken Marks (crystal ball -> letter) when:
--- - 3 first visit objectives are completed
+--Converts Silver Marks into Broken Marks (crystal ball -> letter) when:
+-- - 2 first visit objectives are completed
 -- - 2 objectives in the same world are completed
---0x360A - count how many objective marks have been obtained
+--0x360A - count how many total objective marks have been obtained
 --0x360B - count how many first visit boss objective marks have been obtained
 --0x360C - unused
 
-while ReadByte(Save+0x363D) > ReadByte(Save+0x360A) do
+while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F) + ReadByte(Save+0x3641)) > ReadByte(Save+0x360A) do
 	WriteByte(Save+0x360A,ReadByte(Save+0x360A)+1)
 	--If boss is a first visit boss, increment the counters
 	local FVB = false
@@ -3259,7 +3259,7 @@ while ReadByte(Save+0x363D) > ReadByte(Save+0x360A) do
 	end
 	if FVB then
 		WriteByte(Save+0x360B,ReadByte(Save+0x360B)+1)
-		--If this is the 3rd first visit boss,
+		--If this is the 2nd first visit boss,
 		--replace all other first visit completion marks with broken marks (letters)
 		if ReadByte(Save+0x360B) >= 2 then
 			ReplaceFirstVisitObjectives()

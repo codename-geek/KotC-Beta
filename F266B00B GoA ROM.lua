@@ -3212,6 +3212,7 @@ function ObjFix()
 if prevObjCount ~= ReadByte(Save+0x363D) and prevObjCount == 0 then
 	if ReadByte(Save+0x360B) == 2 then
 		ReplaceFirstVisitObjectives()
+		SilverReplaceObjectives()
 	end
 end
 

@@ -2873,7 +2873,7 @@ if ReadShort(Save+0x03D6) == 0x02 then
 end
 end
 
-function ReplaceFirstVisitObjectives(offset)
+function ReplaceFirstVisitObjectives()
 	-- Letter (0x16F) - Crystal Orb (0x16B) = 4
 	--			 367				   363
 	-- 363 = Crystal Orb -> Silver Completion Mark
@@ -3208,6 +3208,13 @@ function ObjFix()
 --0x360B - count how many first visit boss objective marks have been obtained
 --0x360C - unused
 
+--logic for auto-saves maybe
+if prevObjCount ~= ReadByte(Save+0x363D) and prevObjCount == 0 then
+	if ReadByte(Save+0x360B) == 2 then
+		ReplaceFirstVisitObjectives()
+	end
+end
+
 while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F) + ReadByte(Save+0x3641)) > ReadByte(Save+0x360A) do
 	WriteByte(Save+0x360A,ReadByte(Save+0x360A)+1)
 	--If boss is a first visit boss, increment the counters
@@ -3261,7 +3268,7 @@ while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F) + ReadByte(Save+0x3641)) > 
 		WriteByte(Save+0x360B,ReadByte(Save+0x360B)+1)
 		--If this is the 2nd first visit boss,
 		--replace all other first visit completion marks with broken marks (letters)
-		if ReadByte(Save+0x360B) >= 2 then
+		if ReadByte(Save+0x360B) == 2 then
 			ReplaceFirstVisitObjectives()
 		end
 	end
@@ -3431,6 +3438,7 @@ while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F) + ReadByte(Save+0x3641)) > 
 		ReplaceSecondVisitObjectives("TWTNW")
 	end
 end
+prevObjCount = ReadByte(Save+0x363D)
 end
 
 function NoExp()

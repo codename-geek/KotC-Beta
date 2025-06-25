@@ -1,5 +1,5 @@
 title: (BETA) King of the Crown Tourney Mod Pack v8.1
-description: ------------------------------------------------------ Place above the GoA | For Steam/Epic Version ------------------------------------------------------ 1234567890num's PS2 Duck Flare | Sonicshadowsilver's Cutscene Skipper | GhostTheBoo's Accurate Growth Text | Topaz's Information Box | Geek's Custom GoA | Geek's Custom AntiCheese | Geek's Drive Adjustments | Geek's Bonus Speed Up
+description: ------------------------------------------------------ Place above the SEED | For Steam/Epic Version ------------------------------------------------------ 1234567890num's PS2 Duck Flare | Sonicshadowsilver's Cutscene Skipper | GhostTheBoo's Accurate Growth Text | Topaz's Information Box | Geek's Custom GoA | Geek's Custom AntiCheese | Geek's Drive Adjustments | Geek's Bonus Speed Up
 assets:
 # Lua Scripts
 - name: scripts/CustomAntiCheese.lua
@@ -30,7 +30,7 @@ assets:
   method: copy
   source:
   - name: EnablersAP.lua
-#Orichalcum Text -> Broken Mark
+#Completion Mark text changes
 - name: msg/us/sys.bar
   multi:
   - name: msg/fr/sys.bar

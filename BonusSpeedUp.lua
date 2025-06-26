@@ -60,12 +60,12 @@ end
 
 prevBtlEnd = 0
 speedingUp = false
-ignore = false
 function _OnFrame()
 	if GameVersion == 0 then --Get anchor addresses
 		GetVersion()
 		return
 	end
+	ignore = false
 
 	--Final Xemnas
 	if ReadByte(Now+0x00) == 0x12 and ReadByte(Now+0x01) == 0x14 and ReadShort(Now+0x08) == 0x4A then

@@ -286,21 +286,21 @@ assets:
     source:
     - name: ard/al10evt.yml
     type: AreaDataScript
-- method: binarc
-  name: ard/al11.ard #Ruined Chamber Cutscenes
-  multi:
-  - name: ard/jp/al11.ard
-  - name: ard/us/al11.ard
-  - name: ard/fr/al11.ard
-  - name: ard/gr/al11.ard
-  - name: ard/it/al11.ard
-  - name: ard/sp/al11.ard
-  source:
-  - method: areadatascript
-    name: evt
-    source:
-    - name: ard/al11evt.yml
-    type: AreaDataScript
+#- method: binarc
+#  name: ard/al11.ard #Ruined Chamber Cutscenes
+#  multi:
+#  - name: ard/jp/al11.ard
+#  - name: ard/us/al11.ard
+#  - name: ard/fr/al11.ard
+#  - name: ard/gr/al11.ard
+#  - name: ard/it/al11.ard
+#  - name: ard/sp/al11.ard
+#  source:
+#  - method: areadatascript
+#    name: evt
+#    source:
+#    - name: ard/al11evt.yml
+#    type: AreaDataScript
 - method: binarc
   name: ard/al13.ard #The Cave of Wonders: Chasm of Challenges Cutscenes
   multi:

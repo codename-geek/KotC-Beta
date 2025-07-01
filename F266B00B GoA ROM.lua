@@ -455,6 +455,8 @@ At()
 Data()
 
 WinConInfoBox()
+
+ScanObjectives()
 end
 
 function NewGame()
@@ -3716,8 +3718,8 @@ function SilverReplaceObjectives()
 	end
 	--Data Saix
 	if ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 367 ~= 367 then
+	   ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 367 ~= 367 then
 		print("Data Saix")
 		WriteShort(BAR(Sys3, 0x7, 0x13CE), ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) + 2, OnPC)
 	end

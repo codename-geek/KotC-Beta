@@ -79,15 +79,15 @@ function _OnFrame()
 	end
 	if World == 0x04 and Room == 0x1A and not inGoA then
 		--print("Picked")
-		if ReadByte(Save+0x24FE) == 0 then --Sword
-			--print("Sword")
-			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
-			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
-			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
-		elseif ReadByte(Save+0x24FE) == 2 then --Staff
+		if ReadByte(Save+0x24FE) == 2 then --Staff
 			--print("Staff")
 			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
+			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
+		elseif ReadByte(Save+0x24FE) == 0 then --Sword
+			--print("Sword")
+			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
+			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0186, OnPC) --Combo Boost
 			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
 		elseif ReadByte(Save+0x24FE) == 1 then --Shield
 			--print("Shield")

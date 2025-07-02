@@ -84,11 +84,13 @@ function _OnFrame()
 			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
 			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
+			WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 2)
+			WriteByte(Save+0x24FA,ReadByte(Save+0x24F9) + 2)
 		elseif ReadByte(Save+0x24FE) == 0 then --Sword
 			--print("Sword")
 			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
-			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0186, OnPC) --Combo Boost
-			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
+			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC) 
+			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
 		elseif ReadByte(Save+0x24FE) == 1 then --Shield
 			--print("Shield")
 			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)

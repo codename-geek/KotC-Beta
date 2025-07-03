@@ -69,7 +69,7 @@ function _OnFrame()
 	Map    = ReadShort(Now+0x04)
 	Btl    = ReadShort(Now+0x06)
 	Evt    = ReadShort(Now+0x08)
-	--print(ReadByte(Save+0x24FE))
+	print(ReadByte(Save+0x24FE))
 	--WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 	--WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
 	--WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2

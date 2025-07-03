@@ -456,7 +456,7 @@ Data()
 
 WinConInfoBox()
 
-ScanObjectives()
+--ScanObjectives()
 end
 
 function NewGame()
@@ -3060,8 +3060,8 @@ function ReplaceSecondVisitObjectives(world)
 		end
 	elseif world == "TWTNW" then
 		--Story Luxord
-		if ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 365 == 365 and
-		   ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 367 ~= 367 then
+		if ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 363 == 363 and
+		   ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 365 ~= 365 then
 			WriteInt(BAR(Btl0, 0x6, 0x410), ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) + 2, OnPC)
 		end
 		--Story Saix
@@ -3806,6 +3806,13 @@ function SilverReplaceObjectives()
 	   ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 367 ~= 367 then
 		print("Data Luxord")
 		WriteShort(BAR(Sys3, 0x7, 0x13DA), ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) + 2, OnPC)
+	end
+	--Story Saix
+	if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 367 ~= 367 then
+		print("Story Saix 1")
+		WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 2, OnPC)
 	end
 	--Story Xemnas 1
 	if ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 363 == 363 and

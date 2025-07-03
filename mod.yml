@@ -1,4 +1,4 @@
-title: (BETA) King of the Crown Tourney Mod Pack v8.2
+title: (BETA) King of the Crown Tourney Mod Pack v8.3
 description: ------------------------------------------------------ Place above the SEED | For Steam/Epic Version ------------------------------------------------------ 1234567890num's PS2 Duck Flare | Sonicshadowsilver's Cutscene Skipper | GhostTheBoo's Accurate Growth Text | Topaz's Information Box | Geek's Custom GoA | Geek's Custom AntiCheese | Geek's Drive Adjustments | Geek's Bonus Speed Up
 assets:
 # Lua Scripts
@@ -34,7 +34,7 @@ assets:
   method: copy
   source:
   - name: DreamWeapon.lua
-#Completion Mark text changes
+# Completion Mark text changes
 - name: msg/us/sys.bar
   multi:
   - name: msg/fr/sys.bar
@@ -48,6 +48,21 @@ assets:
     method: kh2msg
     source:
     - name: msg/sys.yml
+      language: en
+# Dream Weapon Flavor Text
+- name: msg/us/tt.bar
+  multi:
+  - name: msg/fr/tt.bar
+  - name: msg/gr/tt.bar
+  - name: msg/it/tt.bar
+  - name: msg/sp/tt.bar
+  method: binarc
+  source:
+  - name: tt
+    type: list
+    method: kh2msg
+    source:
+    - name: msg/tt.yml
       language: en
 # Crystal Orb/Tournament Poster/Letter icon replacement
 - name: remastered/itempic/item-226.imd/-0.dds

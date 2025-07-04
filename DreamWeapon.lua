@@ -69,7 +69,7 @@ function _OnFrame()
 	Map    = ReadShort(Now+0x04)
 	Btl    = ReadShort(Now+0x06)
 	Evt    = ReadShort(Now+0x08)
-	print(ReadByte(Save+0x24FE))
+	--print(ReadByte(Save+0x24FE))
 	--WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 	--WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
 	--WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2
@@ -81,13 +81,13 @@ function _OnFrame()
 		--print("Picked")
 		if ReadByte(Save+0x24FE) == 2 then --Staff
 			--print("Staff")
-			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
+			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
 		elseif ReadByte(Save+0x24FE) == 0 then --Sword
 			--print("Sword")
-			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 			WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0187, OnPC) --Air Combo Boost
+			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
 			WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 2)
 			WriteByte(Save+0x24FA,ReadByte(Save+0x24F9) + 2)

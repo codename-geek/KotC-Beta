@@ -15,8 +15,10 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		GameVersion = 2
 		Now = 0x0716DF8
 		Save = 0x09A9330
+		inputAddr = 0x29FAD70
 		Cntrl = 0x2A16C68
 		BtlTyp = 0x2A10E84
+		Slot1 = 0x2A23018
 		Sys3Pointer = 0x2AE58D0
 		Sys3 = ReadLong(Sys3Pointer)
 		IsLoaded = 0x09BA310
@@ -25,8 +27,10 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		GameVersion = 3
 		Now = 0x0717008
 		Save = 0x09A98B0
+		inputAddr = 0xBF31A0
 		Cntrl = 0x2A171E8
 		BtlTyp = 0x2A11404
+		Slot1 = 0x2A23598
 		Sys3Pointer = 0x2AE5E50
 		Sys3 = ReadLong(Sys3Pointer)
 		print('GoA Steam Global Version (v.2) - Custom Modified GoA Chests')
@@ -35,9 +39,11 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		GameVersion = 4
 		Now = 0x0717008
 		Save = 0x09A98B0
+		inputAddr = 0xBF31A0
 		Sys3Pointer = 0x2AE5E50
 		Cntrl = 0x2A171E8
 		BtlTyp = 0x2A11404
+		Slot1 = 0x2A23598
 		Sys3 = ReadLong(Sys3Pointer)
 		IsLoaded = 0x09B9850
 		print('GoA Steam JP Version (v.2) - Custom Modified GoA Chests')
@@ -124,6 +130,12 @@ function _OnFrame()
 	end
 
 	Check()
+	if ReadInt(inputAddr) == 247042 then --used for soft-reset I guess
+		--print("reset")
+		GoA_Warning = false
+		GoA_Locked = false
+	end
+	
 	--warning message
 	if CheckCount == 10 and not GoA_Warning and not OpenedChest then
 		WriteInfoBox('WARNING - GoA Bonuses will disappear after 1 more Torn Page/Drive Form/World Unlock!')
@@ -134,96 +146,92 @@ function _OnFrame()
 		WriteInfoBox('ALERT - GoA Bonuses are now removed.')
 		GoA_Locked = true
 	end
+	--reset stuff
+	if CheckCount <= 10 then
+		GoA_Locked = false
+	end
 	DisplayInfoBox()
 end
 
+--Get Progression Item Count (Pages + Drives + Unlocks)
 function Check()
---Magic
-local fireCount = ReadByte(Save+0x3594)
-local blizzardCount = ReadByte(Save+0x3595)
-local thunderCount = ReadByte(Save+0x3596)
-local cureCount = ReadByte(Save+0x3597)
-local magnetCount = ReadByte(Save+0x35CF)
-local reflectCount = ReadByte(Save+0x35D0)
-local magicCount = fireCount + blizzardCount + thunderCount + cureCount + magnetCount + reflectCount
+	--Torn Pages
+	local truePageCount = 0
+	--Used first page
+	if ReadByte(Save+0x1DB1) > 1 then
+		truePageCount = 1
+	end
+	--Used second page
+	if ReadByte(Save+0x1DB2) > 1 then
+		truePageCount = 2
+	end
+	--Used third page
+	if ReadByte(Save+0x1DB3) > 1 then
+		truePageCount = 3
+	end
+	--Used fourth page
+	if ReadByte(Save+0x1DB4) > 1 then
+		truePageCount = 4
+	end
+	--Used fifth page
+	if ReadByte(Save+0x1DB5) > 0 then
+		truePageCount = 5
+	end
+	truePageCount = truePageCount + ReadByte(Save+0x3598)
 
---Torn Pages
-local truePageCount = 0
---Used first page
-if ReadByte(Save+0x1DB1) > 1 then
-	truePageCount = 1
-end
---Used second page
-if ReadByte(Save+0x1DB2) > 1 then
-	truePageCount = 2
-end
---Used third page
-if ReadByte(Save+0x1DB3) > 1 then
-	truePageCount = 3
-end
---Used fourth page
-if ReadByte(Save+0x1DB4) > 1 then
-	truePageCount = 4
-end
---Used fifth page
-if ReadByte(Save+0x1DB5) > 0 then
-	truePageCount = 5
-end
-truePageCount = truePageCount + ReadByte(Save+0x3598)
+	--Forms
+	local formCount = 0
+	--Valor
+	if ReadByte(Save+0x36C0)&0x80 == 0x80 then
+		formCount = formCount + 1
+	end
+	--Wisdom
+	if ReadByte(Save+0x36C0)&0x4 == 0x4 then
+		formCount = formCount + 1
+	end
+	--Limit
+	if ReadByte(Save+0x36CA)&0x8 == 0x8 then
+		formCount = formCount + 1
+	end
+	--Master
+	if ReadByte(Save+0x36C0)&0x40 == 0x40 then
+		formCount = formCount + 1
+	end
+	--Final
+	if ReadByte(Save+0x36C2)&0x02 == 0x02 then
+		formCount = formCount + 1
+	end
 
---Forms
-local formCount = 0
---Valor
-if ReadByte(Save+0x36C0)&0x80 == 0x80 then
-	formCount = formCount + 1
-end
---Wisdom
-if ReadByte(Save+0x36C0)&0x4 == 0x4 then
-	formCount = formCount + 1
-end
---Limit
-if ReadByte(Save+0x36CA)&0x8 == 0x8 then
-	formCount = formCount + 1
-end
---Master
-if ReadByte(Save+0x36C0)&0x10 == 0x10 then
-	formCount = formCount + 1
-end
---Final
-if ReadByte(Save+0x36C2)&0x02 == 0x02 then
-	formCount = formCount + 1
-end
+	--Visit Unlocks
+	local unlockCount = 0
+	--Namine's Sketches
+	unlockCount = unlockCount + ReadByte(Save+0x3642)
+	--Ice Cream
+	unlockCount = unlockCount + ReadByte(Save+0x3649)
+	--Membership Card
+	unlockCount = unlockCount + ReadByte(Save+0x3643)
+	--Beast's Claw
+	unlockCount = unlockCount + ReadByte(Save+0x35B3)
+	--Battlefields of War
+	unlockCount = unlockCount + ReadByte(Save+0x35AE)
+	--Scimitar
+	unlockCount = unlockCount + ReadByte(Save+0x35C0)
+	--Sword of the Ancestors
+	unlockCount = unlockCount + ReadByte(Save+0x35AF)
+	--Proud Fang
+	unlockCount = unlockCount + ReadByte(Save+0x35B5)
+	--Royal Summons (DUMMY 13)
+	unlockCount = unlockCount + ReadByte(Save+0x365D)
+	--Bone Fist
+	unlockCount = unlockCount + ReadByte(Save+0x35B4)
+	--Skill and Crossbones
+	unlockCount = unlockCount + ReadByte(Save+0x35B6)
+	--Identity Disk
+	unlockCount = unlockCount + ReadByte(Save+0x35C2)
+	--Way to the Dawn
+	unlockCount = unlockCount + ReadByte(Save+0x35C1)
 
---Visit Unlocks
-local unlockCount = 0
---Namine's Sketches
-unlockCount = unlockCount + ReadByte(Save+0x3642)
---Ice Cream
-unlockCount = unlockCount + ReadByte(Save+0x3649)
---Membership Card
-unlockCount = unlockCount + ReadByte(Save+0x3643)
---Beast's Claw
-unlockCount = unlockCount + ReadByte(Save+0x35B3)
---Battlefields of War
-unlockCount = unlockCount + ReadByte(Save+0x35AE)
---Scimitar
-unlockCount = unlockCount + ReadByte(Save+0x35C0)
---Sword of the Ancestors
-unlockCount = unlockCount + ReadByte(Save+0x35AF)
---Proud Fang
-unlockCount = unlockCount + ReadByte(Save+0x35B5)
---Royal Summons (DUMMY 13)
-unlockCount = unlockCount + ReadByte(Save+0x365D)
---Bone Fist
-unlockCount = unlockCount + ReadByte(Save+0x35B4)
---Skill and Crossbones
-unlockCount = unlockCount + ReadByte(Save+0x35B6)
---Identity Disk
-unlockCount = unlockCount + ReadByte(Save+0x35C2)
---Way to the Dawn
-unlockCount = unlockCount + ReadByte(Save+0x35C1)
-
-CheckCount = truePageCount + formCount + unlockCount
+	CheckCount = truePageCount + formCount + unlockCount
 end
 
 --still missing icon support and special things like color/size/ect.
@@ -305,7 +313,7 @@ function ShowInfoBox()
 end
 
 function DisplayInfoBox() --Used to check when the wincon is achieved at when to display it
-	if ReadByte(Cntrl) == 0 and (ReadByte(BtlTyp) == 0 or ReadByte(BtlTyp) == 1)
+	if ReadByte(Cntrl) == 0 and (ReadByte(BtlTyp) >= 0 and ReadByte(BtlTyp) <= 2)
 	   and doInfoBox and ReadByte(IsLoaded) == 0 then
 		infoBoxTick = infoBoxTick + 1
 		if infoBoxTick > 15 then --after 15 frames?

@@ -3136,7 +3136,7 @@ if ReadByte(Save+0x36CA)&0x8 == 0x8 then
 	formCount = formCount + 1
 end
 --Master
-if ReadByte(Save+0x36C0)&0x10 == 0x10 then
+if ReadByte(Save+0x36C0)&0x40 == 0x40 then
 	formCount = formCount + 1
 end
 --Final

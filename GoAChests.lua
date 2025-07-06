@@ -106,26 +106,29 @@ function _OnFrame()
 	end
 	
 	if ReadByte(Save + 0x23DF) & 0x4 == 0x4 and not OpenedChest then
-		print("Opened Left Chest")
+		--print("Opened Left Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
+		WriteByte(Save+0x24FE, 2)
 		OpenedChest = true
 	end
 	if ReadByte(Save + 0x23DF) & 0x8 == 0x8 and not OpenedChest then
-		print("Opened Middle Chest")
+		--print("Opened Middle Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0187, OnPC) --Air Combo Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
 		WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 2)
 		WriteByte(Save+0x24FA,ReadByte(Save+0x24F9) + 2)
+		WriteByte(Save+0x24FE, 0)
 		OpenedChest = true
 	end
 	if ReadByte(Save + 0x23DF) & 0x2 == 0x2 and not OpenedChest then
-		print("Opened Right Chest")
+		--print("Opened Right Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2
+		WriteByte(Save+0x24FE, 1)
 		OpenedChest = true
 	end
 

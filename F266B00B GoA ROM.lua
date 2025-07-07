@@ -3297,11 +3297,6 @@ function ReplaceSecondVisitObjectives(world)
 			WriteShort(BAR(Sys3, 0x7, 0x13DA), ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) + 2, OnPC)
 		end
 	elseif world == "TWTNW" then
-		--Story Luxord
-		if ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 363 == 363 and
-		   ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 365 ~= 365 then
-			WriteInt(BAR(Btl0, 0x6, 0x410), ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) + 2, OnPC)
-		end
 		--Story Saix
 		if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 365 == 365 and
 		   ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 367 ~= 367 then
@@ -3468,7 +3463,7 @@ function ObjFix()
 --0x360C - unused
 
 --logic for auto-saves maybe
-if prevObjCount ~= ReadByte(Save+0x363D) and prevObjCount == 0 then
+if prevObjCount ~= (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) and prevObjCount == 0 then
 	if ReadByte(Save+0x360B) == 2 then
 		ReplaceFirstVisitObjectives()
 	end
@@ -3542,7 +3537,7 @@ while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) > ReadByte(Save+0x360A) do
 
 	CheckWorlds()
 end
-prevObjCount = ReadByte(Save+0x363D)
+prevObjCount = ReadByte(Save+0x363D) + ReadByte(Save+0x363F)
 end
 function CheckWorlds() --used with the above function and loading a save/autosave
 	--Check what bosses are done

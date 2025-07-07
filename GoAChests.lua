@@ -119,7 +119,7 @@ function _OnFrame()
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
 		WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 2)
-		WriteByte(Save+0x24FA,ReadByte(Save+0x24F9) + 2)
+		WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 2)
 		WriteByte(Save+0x24FE, 0)
 		OpenedChest = true
 	end

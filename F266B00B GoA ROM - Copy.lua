@@ -2965,247 +2965,9 @@ function ReplaceFirstVisitObjectives()
 		--print("Story Luxord")
 		WriteInt(BAR(Btl0, 0x6, 0x410), ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) + 4, OnPC)
 	end
-	--if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 363 == 363 then
-	--	--print("Story Saix")
-	--	WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 4, OnPC)
-	--end
-end
-
-function SilverReplaceObjectives()
-	--print("REPLACING SECOND VISIT OBJECTIVES")
-	--Data Roxas
-	if ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 367 ~= 367 then
-		print("Data Roxas")
-		WriteShort(BAR(Sys3, 0x7, 0x13E6), ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) + 2, OnPC)
-	end
-	--Story Demyx
-	if ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) & 367 ~= 367 then
-		print("Story Demyx")
-		WriteShort(BAR(Btl0, 0x6, 0x460), ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) + 2, OnPC)
-	end
-	--Sephiroth
-	if ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) & 367 ~= 367 then
-		print("Sephiroth")
-		WriteInt(BAR(Btl0, 0x6, 0x590), ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) + 2, OnPC)
-	end
-	--Data Demyx
-	if ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) & 367 ~= 367 then
-		print("Data Demyx")
-		WriteShort(BAR(Sys3, 0x7, 0x1392), ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) + 2, OnPC)
-	end
-	--Future Pete
-	if ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) & 367 ~= 367 then
-		print("Future Pete")
-		WriteInt(BAR(Btl0, 0x6, 0x270), ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) + 2, OnPC)
-	end
-	--Marluxia
-	if ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) & 367 ~= 367 then
-		print("Marluxia")
-		WriteInt(BAR(Btl0, 0x6, 0xA40), ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) + 2, OnPC)
-	end
-	--Hades
-	if ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) & 367 ~= 367 then
-		print("Hades")
-		WriteInt(BAR(Btl0, 0x6, 0x140), ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) + 2, OnPC)
-	end
-	--Zexion
-	if ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) & 367 ~= 367 then
-		print("Zexion")
-		WriteInt(BAR(Btl0, 0x6, 0xA10), ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) + 2, OnPC)
-	end
-	--Storm Rider
-	if ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) & 367 ~= 367 then
-		print("Storm Rider")
-		WriteInt(BAR(Btl0, 0x6, 0x1C0), ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) + 2, OnPC)
-	end
-	--Data Xigbar
-	if ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) & 367 ~= 367 then
-		print("Data Xigbar")
-		WriteShort(BAR(Sys3, 0x7, 0x13C2), ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) + 2, OnPC)
-	end
-	--Groundshaker
-	if ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) & 367 ~= 367 then
-		print("Groundshaker")
-		WriteInt(BAR(Btl0, 0x6, 0x4D0), ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) + 2, OnPC)
-	end
-	--Data Saix
-	if ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 367 ~= 367 then
-		print("Data Saix")
-		WriteShort(BAR(Sys3, 0x7, 0x13CE), ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) + 2, OnPC)
-	end
-	--Experiment
-	if ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) & 367 ~= 367 then
-		print("Experiment")
-		WriteInt(BAR(Btl0, 0x6, 0x320), ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) + 2, OnPC)
-	end
-	--Vexen
-	if ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) & 367 ~= 367 then
-		print("Vexen")
-		WriteInt(BAR(Btl0, 0x6, 0x9B0), ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) + 2, OnPC)
-	end
-	--MCP
-	if ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) & 367 ~= 367 then
-		print("MCP")
-		WriteInt(BAR(Btl0, 0x6, 0x530), ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) + 2, OnPC)
-	end
-	--Larxene
-	if ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) & 367 ~= 367 then
-		print("Larxene")
-		WriteInt(BAR(Btl0, 0x6, 0xA70), ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) + 2, OnPC)
-	end
-	--Data Axel
-	if ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) & 367 ~= 367 then
-		print("Data Axel")
-		WriteShort(BAR(Sys3, 0x7, 0x13AA), ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) + 2, OnPC)
-	end
-	--Story Xaldin
-	if ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) & 367 ~= 367 then
-		print("Story Xaldin")
-		WriteInt(BAR(Btl0, 0x6, 0x080), ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) + 2, OnPC)
-	end
-	--Data Xaldin
-	if ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) & 367 ~= 367 then
-		print("Data Xaldin")
-		WriteShort(BAR(Sys3, 0x7, 0x139E), ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) + 2, OnPC)
-	end
-	--Genie Jafar
-	if ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) & 367 ~= 367 then
-		print("Genie Jafar")
-		WriteInt(BAR(Btl0, 0x6, 0x230), ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) + 2, OnPC)
-	end
-	--Lexaeus
-	if ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) & 367 ~= 367 then
-		print("Lexaeus")
-		WriteInt(BAR(Btl0, 0x6, 0x9E0), ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) + 2, OnPC)
-	end
-	--GR 1
-	if ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) & 367 ~= 367 then
-		print("GR 1")
-		WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 2, OnPC)
-	end
-	--GR 2
-	if ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) & 367 ~= 367 then
-		print("GR 2")
-		WriteInt(BAR(Btl0, 0x6, 0x3A0), ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) + 2, OnPC)
-	end
-	--Data Luxord
-	if ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 367 ~= 367 then
-		print("Data Luxord")
-		WriteShort(BAR(Sys3, 0x7, 0x13DA), ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) + 2, OnPC)
-	end
-	--Story Saix
-	if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 367 ~= 367 then
-		print("Story Saix")
-		WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 2, OnPC)
-	end
-	--Story Xemnas 1
-	if ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 363 == 363 and
-	   ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 365 ~= 365 and
-	   ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 367 ~= 367 then
-		print("Story Xemnas 1")
-		WriteInt(BAR(Btl0, 0x6, 0x450), ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) + 2, OnPC)
-	end
-	--Data Xemnas
-	if ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) & 363 == 363 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) & 365 ~= 365 and
-	   ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) & 367 ~= 367 then
-		print("Data Xemnas")
-		WriteShort(BAR(Sys3, 0x7, 0x13B6), ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) + 2, OnPC)
-	end
-end
-
-function ReplaceFirstVisitObjectivesName(world)
-	--Replace Silver Marks with Broken Marks if a world has multiple first-visit-bosses
-	if world == "BC" then
-		-- BEASTS CASTLE
-		if ReadInt(BAR(Btl0, 0x6, 0x040), OnPC) & 363 == 363 then
-			--print("Dark Thorn")
-			WriteInt(BAR(Btl0, 0x6, 0x040), ReadInt(BAR(Btl0, 0x6, 0x040), OnPC) + 4, OnPC)
-		end
-	elseif world == "HT" then
-		-- HALLOWEEN TOWN
-		if ReadInt(BAR(Btl0, 0x6, 0x2E0), OnPC) & 363 == 363 then
-			--print("Oogie Boogie")
-			WriteInt(BAR(Btl0, 0x6, 0x2E0), ReadInt(BAR(Btl0, 0x6, 0x2E0), OnPC) + 4, OnPC)
-		end
-	elseif world == "OC" then
-		-- OLYMPUS COLISEUM
-		if ReadInt(BAR(Btl0, 0x6, 0x110), OnPC) & 363 == 363 then
-			--print("The Hydra")
-			WriteInt(BAR(Btl0, 0x6, 0x110), ReadInt(BAR(Btl0, 0x6, 0x110), OnPC) + 4, OnPC)
-		end
-	elseif world == "STT" then
-		-- SIMULATED TWILIGHT TOWN
-		if ReadInt(BAR(Btl0, 0x6, 0x580), OnPC) & 363 == 363 then
-			--print("Axel 2")
-			WriteInt(BAR(Btl0, 0x6, 0x580), ReadInt(BAR(Btl0, 0x6, 0x580), OnPC) + 4, OnPC)
-		end
-	elseif world == "TWTNW" then
-		-- THE WORLD THAT NEVER WAS
-		if ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC) & 363 == 363 then
-			--print("Story Xigbar")
-			WriteInt(BAR(Btl0, 0x6, 0x3E0), ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC) + 4, OnPC)
-		end
-		if ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 363 == 363 then
-			--print("Story Luxord")
-			WriteInt(BAR(Btl0, 0x6, 0x410), ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) + 4, OnPC)
-		end
-		--if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 363 == 363 then
-		--	--print("Story Saix")
-		--	WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 4, OnPC)
-		--end
-	else
-		print("ERROR WITH REPLACE FIRST VISIT OBJECTIVES NAME")
+	if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 363 == 363 then
+		--print("Story Saix")
+		WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 4, OnPC)
 	end
 end
 
@@ -3326,136 +3088,136 @@ function ReplaceSecondVisitObjectives(world)
 end
 
 function ABN()
-	--Magic
-	local fireCount = ReadByte(Save+0x3594)
-	local blizzardCount = ReadByte(Save+0x3595)
-	local thunderCount = ReadByte(Save+0x3596)
-	local cureCount = ReadByte(Save+0x3597)
-	local magnetCount = ReadByte(Save+0x35CF)
-	local reflectCount = ReadByte(Save+0x35D0)
-	local magicCount = fireCount + blizzardCount + thunderCount + cureCount + magnetCount + reflectCount
+--Magic
+local fireCount = ReadByte(Save+0x3594)
+local blizzardCount = ReadByte(Save+0x3595)
+local thunderCount = ReadByte(Save+0x3596)
+local cureCount = ReadByte(Save+0x3597)
+local magnetCount = ReadByte(Save+0x35CF)
+local reflectCount = ReadByte(Save+0x35D0)
+local magicCount = fireCount + blizzardCount + thunderCount + cureCount + magnetCount + reflectCount
 
-	--Torn Pages
-	local truePageCount = 0
-	--Used first page
-	if ReadByte(Save+0x1DB1) > 1 then
-		truePageCount = 1
-	end
-	--Used second page
-	if ReadByte(Save+0x1DB2) > 1 then
-		truePageCount = 2
-	end
-	--Used third page
-	if ReadByte(Save+0x1DB3) > 1 then
-		truePageCount = 3
-	end
-	--Used fourth page
-	if ReadByte(Save+0x1DB4) > 1 then
-		truePageCount = 4
-	end
-	--Used fifth page
-	if ReadByte(Save+0x1DB5) > 0 then
-		truePageCount = 5
-	end
-	truePageCount = truePageCount + ReadByte(Save+0x3598)
+--Torn Pages
+local truePageCount = 0
+--Used first page
+if ReadByte(Save+0x1DB1) > 1 then
+	truePageCount = 1
+end
+--Used second page
+if ReadByte(Save+0x1DB2) > 1 then
+	truePageCount = 2
+end
+--Used third page
+if ReadByte(Save+0x1DB3) > 1 then
+	truePageCount = 3
+end
+--Used fourth page
+if ReadByte(Save+0x1DB4) > 1 then
+	truePageCount = 4
+end
+--Used fifth page
+if ReadByte(Save+0x1DB5) > 0 then
+	truePageCount = 5
+end
+truePageCount = truePageCount + ReadByte(Save+0x3598)
 
-	--Forms
-	local formCount = 0
-	--Valor
-	if ReadByte(Save+0x36C0)&0x80 == 0x80 then
-		formCount = formCount + 1
+--Forms
+local formCount = 0
+--Valor
+if ReadByte(Save+0x36C0)&0x80 == 0x80 then
+	formCount = formCount + 1
+end
+--Wisdom
+if ReadByte(Save+0x36C0)&0x4 == 0x4 then
+	formCount = formCount + 1
+end
+--Limit
+if ReadByte(Save+0x36CA)&0x8 == 0x8 then
+	formCount = formCount + 1
+end
+--Master
+if ReadByte(Save+0x36C0)&0x40 == 0x40 then
+	formCount = formCount + 1
+end
+--Final
+if ReadByte(Save+0x36C2)&0x02 == 0x02 then
+	formCount = formCount + 1
+end
+
+--Summons
+local summonCount = 0
+--Chicken
+if ReadByte(Save+0x36C0)&0x8 == 0x8 then
+	summonCount = summonCount + 1
+end
+--Genie
+if ReadByte(Save+0x36C4)&0x10 == 0x10 then
+	summonCount = summonCount + 1
+end
+--Stitch
+if ReadByte(Save+0x36C0)&0x1 == 0x1 then
+	summonCount = summonCount + 1
+end
+--Pan
+if ReadByte(Save+0x36C4)&0x20 == 0x20 then
+	summonCount = summonCount + 1
+end
+
+--SC/OM
+local abilityCount = 0
+for Slot = 0,68 do
+	local Current = Save + 0x2544 + 2*Slot
+	local Ability = ReadShort(Current) & 0x0FFF
+	--Negative Combo Check
+	if Ability == 0x019F then
+		abilityCount = abilityCount + 1
+	elseif Ability == 0x1A0 then
+		abilityCount = abilityCount + 1
 	end
-	--Wisdom
-	if ReadByte(Save+0x36C0)&0x4 == 0x4 then
-		formCount = formCount + 1
+end
+
+--Proofs
+local proofCount = 0
+	if ReadByte(Save+0x36B2) > 0 then
+		proofCount = proofCount + 1
 	end
-	--Limit
-	if ReadByte(Save+0x36CA)&0x8 == 0x8 then
-		formCount = formCount + 1
+	if ReadByte(Save+0x36B3) > 0 then
+		proofCount = proofCount + 1
 	end
-	--Master
-	if ReadByte(Save+0x36C0)&0x40 == 0x40 then
-		formCount = formCount + 1
-	end
-	--Final
-	if ReadByte(Save+0x36C2)&0x02 == 0x02 then
-		formCount = formCount + 1
+	if ReadByte(Save+0x36B4) > 0 then
+		proofCount = proofCount + 1
 	end
 
-	--Summons
-	local summonCount = 0
-	--Chicken
-	if ReadByte(Save+0x36C0)&0x8 == 0x8 then
-		summonCount = summonCount + 1
-	end
-	--Genie
-	if ReadByte(Save+0x36C4)&0x10 == 0x10 then
-		summonCount = summonCount + 1
-	end
-	--Stitch
-	if ReadByte(Save+0x36C0)&0x1 == 0x1 then
-		summonCount = summonCount + 1
-	end
-	--Pan
-	if ReadByte(Save+0x36C4)&0x20 == 0x20 then
-		summonCount = summonCount + 1
-	end
+--Visit Unlocks
+local unlockCount = 0
+--Namine's Sketches
+unlockCount = unlockCount + ReadByte(Save+0x3642)
+--Ice Cream
+unlockCount = unlockCount + ReadByte(Save+0x3649)
+--Membership Card
+unlockCount = unlockCount + ReadByte(Save+0x3643)
+--Beast's Claw
+unlockCount = unlockCount + ReadByte(Save+0x35B3)
+--Battlefields of War
+unlockCount = unlockCount + ReadByte(Save+0x35AE)
+--Scimitar
+unlockCount = unlockCount + ReadByte(Save+0x35C0)
+--Sword of the Ancestors
+unlockCount = unlockCount + ReadByte(Save+0x35AF)
+--Proud Fang
+unlockCount = unlockCount + ReadByte(Save+0x35B5)
+--Royal Summons (DUMMY 13)
+unlockCount = unlockCount + ReadByte(Save+0x365D)
+--Bone Fist
+unlockCount = unlockCount + ReadByte(Save+0x35B4)
+--Skill and Crossbones
+unlockCount = unlockCount + ReadByte(Save+0x35B6)
+--Identity Disk
+unlockCount = unlockCount + ReadByte(Save+0x35C2)
+--Way to the Dawn
+unlockCount = unlockCount + ReadByte(Save+0x35C1)
 
-	--SC/OM
-	local abilityCount = 0
-	for Slot = 0,68 do
-			local Current = Save + 0x2544 + 2*Slot
-		local Ability = ReadShort(Current) & 0x0FFF
-		--Negative Combo Check
-		if Ability == 0x019F then
-			abilityCount = abilityCount + 1
-		elseif Ability == 0x1A0 then
-			abilityCount = abilityCount + 1
-		end
-	end
-
-	--Proofs
-	local proofCount = 0
-		if ReadByte(Save+0x36B2) > 0 then
-			proofCount = proofCount + 1
-		end
-		if ReadByte(Save+0x36B3) > 0 then
-			proofCount = proofCount + 1
-		end
-		if ReadByte(Save+0x36B4) > 0 then
-			proofCount = proofCount + 1
-		end
-
-	--Visit Unlocks
-	local unlockCount = 0
-	--Namine's Sketches
-	unlockCount = unlockCount + ReadByte(Save+0x3642)
-	--Ice Cream
-	unlockCount = unlockCount + ReadByte(Save+0x3649)
-	--Membership Card
-	unlockCount = unlockCount + ReadByte(Save+0x3643)
-	--Beast's Claw
-	unlockCount = unlockCount + ReadByte(Save+0x35B3)
-	--Battlefields of War
-	unlockCount = unlockCount + ReadByte(Save+0x35AE)
-	--Scimitar
-	unlockCount = unlockCount + ReadByte(Save+0x35C0)
-	--Sword of the Ancestors
-	unlockCount = unlockCount + ReadByte(Save+0x35AF)
-	--Proud Fang
-	unlockCount = unlockCount + ReadByte(Save+0x35B5)
-	--Royal Summons (DUMMY 13)
-	unlockCount = unlockCount + ReadByte(Save+0x365D)
-	--Bone Fist
-	unlockCount = unlockCount + ReadByte(Save+0x35B4)
-	--Skill and Crossbones
-	unlockCount = unlockCount + ReadByte(Save+0x35B6)
-	--Identity Disk
-	unlockCount = unlockCount + ReadByte(Save+0x35C2)
-	--Way to the Dawn
-	unlockCount = unlockCount + ReadByte(Save+0x35C1)
-
-	CheckCount = magicCount + truePageCount + formCount + summonCount + abilityCount + proofCount + unlockCount
+CheckCount = magicCount + truePageCount + formCount + summonCount + abilityCount + proofCount + unlockCount
 end
 
 function ObjFix()
@@ -3476,26 +3238,23 @@ if prevObjCount ~= ReadByte(Save+0x363D) and prevObjCount == 0 then
 	CheckWorlds()
 end
 
-while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) > ReadByte(Save+0x360A) do
+while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F) + ReadByte(Save+0x3641)) > ReadByte(Save+0x360A) do
 	WriteByte(Save+0x360A,ReadByte(Save+0x360A)+1)
 	--If boss is a first visit boss, increment the counters
 	local FVB = false
 	--STT
 	if World == 0x02 and Room == 0x22 and Btl == 0x9D then --Twilight Thorn
 		FVB = true
-		ReplaceFirstVisitObjectivesName("STT")
 	elseif World == 0x02 and Room == 0x14 and Btl == 0x89 then --Axel 2
 		FVB = true
 	--BC
 	elseif World == 0x05 and Room == 0x0B and Btl == 0x48 then --Thresholder
 		FVB = true
-		ReplaceFirstVisitObjectivesName("BC")
 	elseif World == 0x05 and Room == 0x05 and Btl == 0x4F then --Dark Thorn
 		FVB = true
 	--OC
 	elseif World == 0x06 and Room == 0x07 and Btl == 0x72 then --Cerberus
 		FVB = true
-		ReplaceFirstVisitObjectivesName("OC")
 	elseif World == 0x06 and Room == 0x12 and Btl == 0xAB then --Hydra
 		FVB = true
 	--AG
@@ -3510,7 +3269,6 @@ while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) > ReadByte(Save+0x360A) do
 	--HT
 	elseif World == 0x0E and Room == 0x03 and Btl == 0x34 then --Prison Keeper
 		FVB = true
-		ReplaceFirstVisitObjectivesName("HT")
 	elseif World == 0x0E and Room == 0x09 and Btl == 0x37 then --Oogie Boogie
 		FVB = true
 	--PR
@@ -3522,14 +3280,12 @@ while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) > ReadByte(Save+0x360A) do
 	--TWTNW
 	elseif World == 0x12 and Room == 0x15 and (Btl == 0x41 or Btl == 0x63) then --Story Roxas
 		FVB = true
-		ReplaceFirstVisitObjectivesName("TWTNW")
 	elseif World == 0x12 and Room == 0x0A and (Btl == 0x39 or Btl == 0x64) then --Story Xigbar
 		FVB = true
-		ReplaceFirstVisitObjectivesName("TWTNW")
 	elseif World == 0x12 and Room == 0x0E and (Btl == 0x3A or Btl == 0x65) then --Story Luxord
 		FVB = true
-	--elseif World == 0x12 and Room == 0x0F and (Btl == 0x38 or Btl == 0x66) then --Story Saix
-		--FVB = true
+	elseif World == 0x12 and Room == 0x0F and (Btl == 0x38 or Btl == 0x66) then --Story Saix
+		FVB = true
 	end
 	if FVB then
 		WriteByte(Save+0x360B,ReadByte(Save+0x360B)+1)
@@ -3880,6 +3636,201 @@ function WinConInfoBox() --Used to check when the wincon is achieved at when to 
 		end
 	end
 end
+
+function SilverReplaceObjectives()
+	--print("REPLACING SECOND VISIT OBJECTIVES")
+	--Data Roxas
+	if ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) & 367 ~= 367 then
+		print("Data Roxas")
+		WriteShort(BAR(Sys3, 0x7, 0x13E6), ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) + 2, OnPC)
+	end
+	--Story Demyx
+	if ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) & 367 ~= 367 then
+		print("Story Demyx")
+		WriteShort(BAR(Btl0, 0x6, 0x460), ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) + 2, OnPC)
+	end
+	--Sephiroth
+	if ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) & 367 ~= 367 then
+		print("Sephiroth")
+		WriteInt(BAR(Btl0, 0x6, 0x590), ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) + 2, OnPC)
+	end
+	--Data Demyx
+	if ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) & 367 ~= 367 then
+		print("Data Demyx")
+		WriteShort(BAR(Sys3, 0x7, 0x1392), ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) + 2, OnPC)
+	end
+	--Future Pete
+	if ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) & 367 ~= 367 then
+		print("Future Pete")
+		WriteInt(BAR(Btl0, 0x6, 0x270), ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) + 2, OnPC)
+	end
+	--Marluxia
+	if ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) & 367 ~= 367 then
+		print("Marluxia")
+		WriteInt(BAR(Btl0, 0x6, 0xA40), ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) + 2, OnPC)
+	end
+	--Hades
+	if ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) & 367 ~= 367 then
+		print("Hades")
+		WriteInt(BAR(Btl0, 0x6, 0x140), ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) + 2, OnPC)
+	end
+	--Zexion
+	if ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) & 367 ~= 367 then
+		print("Zexion")
+		WriteInt(BAR(Btl0, 0x6, 0xA10), ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) + 2, OnPC)
+	end
+	--Storm Rider
+	if ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) & 367 ~= 367 then
+		print("Storm Rider")
+		WriteInt(BAR(Btl0, 0x6, 0x1C0), ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) + 2, OnPC)
+	end
+	--Data Xigbar
+	if ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) & 367 ~= 367 then
+		print("Data Xigbar")
+		WriteShort(BAR(Sys3, 0x7, 0x13C2), ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) + 2, OnPC)
+	end
+	--Groundshaker
+	if ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) & 367 ~= 367 then
+		print("Groundshaker")
+		WriteInt(BAR(Btl0, 0x6, 0x4D0), ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) + 2, OnPC)
+	end
+	--Data Saix
+	if ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) & 367 ~= 367 then
+		print("Data Saix")
+		WriteShort(BAR(Sys3, 0x7, 0x13CE), ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) + 2, OnPC)
+	end
+	--Experiment
+	if ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) & 367 ~= 367 then
+		print("Experiment")
+		WriteInt(BAR(Btl0, 0x6, 0x320), ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) + 2, OnPC)
+	end
+	--Vexen
+	if ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) & 367 ~= 367 then
+		print("Vexen")
+		WriteInt(BAR(Btl0, 0x6, 0x9B0), ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) + 2, OnPC)
+	end
+	--MCP
+	if ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) & 367 ~= 367 then
+		print("MCP")
+		WriteInt(BAR(Btl0, 0x6, 0x530), ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) + 2, OnPC)
+	end
+	--Larxene
+	if ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) & 367 ~= 367 then
+		print("Larxene")
+		WriteInt(BAR(Btl0, 0x6, 0xA70), ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) + 2, OnPC)
+	end
+	--Data Axel
+	if ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) & 367 ~= 367 then
+		print("Data Axel")
+		WriteShort(BAR(Sys3, 0x7, 0x13AA), ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) + 2, OnPC)
+	end
+	--Story Xaldin
+	if ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) & 367 ~= 367 then
+		print("Story Xaldin")
+		WriteInt(BAR(Btl0, 0x6, 0x080), ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) + 2, OnPC)
+	end
+	--Data Xaldin
+	if ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) & 367 ~= 367 then
+		print("Data Xaldin")
+		WriteShort(BAR(Sys3, 0x7, 0x139E), ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) + 2, OnPC)
+	end
+	--Genie Jafar
+	if ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) & 367 ~= 367 then
+		print("Genie Jafar")
+		WriteInt(BAR(Btl0, 0x6, 0x230), ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) + 2, OnPC)
+	end
+	--Lexaeus
+	if ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) & 367 ~= 367 then
+		print("Lexaeus")
+		WriteInt(BAR(Btl0, 0x6, 0x9E0), ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) + 2, OnPC)
+	end
+	--GR 1
+	if ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) & 367 ~= 367 then
+		print("GR 1")
+		WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 2, OnPC)
+	end
+	--GR 2
+	if ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) & 367 ~= 367 then
+		print("GR 2")
+		WriteInt(BAR(Btl0, 0x6, 0x3A0), ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) + 2, OnPC)
+	end
+	--Data Luxord
+	if ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) & 367 ~= 367 then
+		print("Data Luxord")
+		WriteShort(BAR(Sys3, 0x7, 0x13DA), ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) + 2, OnPC)
+	end
+	--Story Saix
+	if ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) & 367 ~= 367 then
+		print("Story Saix 1")
+		WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 2, OnPC)
+	end
+	--Story Xemnas 1
+	if ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 363 == 363 and
+	   ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 365 ~= 365 and
+	   ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) & 367 ~= 367 then
+		print("Story Xemnas 1")
+		WriteInt(BAR(Btl0, 0x6, 0x450), ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) + 2, OnPC)
+	end
+	--Data Xemnas
+	if ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) & 363 == 363 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) & 365 ~= 365 and
+	   ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) & 367 ~= 367 then
+		print("Data Xemnas")
+		WriteShort(BAR(Sys3, 0x7, 0x13B6), ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) + 2, OnPC)
+	end
+end
+
+
 
 
 

@@ -3168,30 +3168,51 @@ function ReplaceFirstVisitObjectivesName(world)
 	--Replace Silver Marks with Broken Marks if a world has multiple first-visit-bosses
 	if world == "BC" then
 		-- BEASTS CASTLE
+		if ReadInt(BAR(Btl0, 0x6, 0x040), OnPC) & 367 == 367 then
+			print("skipping - BC")
+			return
+		end
 		if ReadInt(BAR(Btl0, 0x6, 0x040), OnPC) & 363 == 363 then
 			--print("Dark Thorn")
 			WriteInt(BAR(Btl0, 0x6, 0x040), ReadInt(BAR(Btl0, 0x6, 0x040), OnPC) + 4, OnPC)
 		end
 	elseif world == "HT" then
 		-- HALLOWEEN TOWN
+		if ReadInt(BAR(Btl0, 0x6, 0x2E0), OnPC) & 367 == 367 then
+			print("skipping - HT")
+			return
+		end
 		if ReadInt(BAR(Btl0, 0x6, 0x2E0), OnPC) & 363 == 363 then
 			--print("Oogie Boogie")
 			WriteInt(BAR(Btl0, 0x6, 0x2E0), ReadInt(BAR(Btl0, 0x6, 0x2E0), OnPC) + 4, OnPC)
 		end
 	elseif world == "OC" then
 		-- OLYMPUS COLISEUM
+		if ReadInt(BAR(Btl0, 0x6, 0x110), OnPC) & 367 == 367 then
+			print("skipping - OC")
+			return
+		end
 		if ReadInt(BAR(Btl0, 0x6, 0x110), OnPC) & 363 == 363 then
 			--print("The Hydra")
 			WriteInt(BAR(Btl0, 0x6, 0x110), ReadInt(BAR(Btl0, 0x6, 0x110), OnPC) + 4, OnPC)
 		end
 	elseif world == "STT" then
 		-- SIMULATED TWILIGHT TOWN
+		if ReadInt(BAR(Btl0, 0x6, 0x580), OnPC) & 367 == 367 then
+			print("skipping - STT")
+			return
+		end
 		if ReadInt(BAR(Btl0, 0x6, 0x580), OnPC) & 363 == 363 then
 			--print("Axel 2")
 			WriteInt(BAR(Btl0, 0x6, 0x580), ReadInt(BAR(Btl0, 0x6, 0x580), OnPC) + 4, OnPC)
 		end
 	elseif world == "TWTNW" then
 		-- THE WORLD THAT NEVER WAS
+		if ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC) & 367 == 367
+		   or ReadInt(BAR(Btl0, 0x6, 0x410), OnPC) & 367 == 367 then
+			print("skipping - TWTNW")
+			return
+		end
 		if ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC) & 363 == 363 then
 			--print("Story Xigbar")
 			WriteInt(BAR(Btl0, 0x6, 0x3E0), ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC) + 4, OnPC)

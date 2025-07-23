@@ -3213,6 +3213,10 @@ function ReplaceFirstVisitObjectivesName(world)
 			print("skipping - TWTNW")
 			return
 		end
+		if ReadInt(BAR(Btl0, 0x6, 0xAA0), OnPC) & 363 == 363 then
+			--print("Story Roxas")
+			WriteInt(BAR(Btl0, 0x6, 0xAA0), ReadInt(BAR(Btl0, 0x6, 0xAA0), OnPC) + 4, OnPC)
+		end
 		if ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC) & 363 == 363 then
 			--print("Story Xigbar")
 			WriteInt(BAR(Btl0, 0x6, 0x3E0), ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC) + 4, OnPC)

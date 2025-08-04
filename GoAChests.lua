@@ -90,7 +90,7 @@ function _OnFrame()
 	Evt    = ReadShort(Now+0x08)
 
 	Check()
-	if CheckCount == 13 and not GoA_Warning and not OpenedChest then
+	if CheckCount >= 13 and not GoA_Warning and not OpenedChest then
 		WriteInfoBox('GoA Bonuses are now open!')
 		GoA_Warning = true
 	end
@@ -115,16 +115,16 @@ function _OnFrame()
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC)
 		OpenedChest = false
 	end
-	
+
 	if ReadByte(Save + 0x23DF) & 0x4 == 0x4 and not OpenedChest then
-		--print("Opened Left Chest")
+		print("Opened Left Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
 		WriteByte(Save+0x24FE, 2)
 	end
 	if ReadByte(Save + 0x23DF) & 0x8 == 0x8 and not OpenedChest then
-		--print("Opened Middle Chest")
+		print("Opened Middle Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0187, OnPC) --Air Combo Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
@@ -133,33 +133,22 @@ function _OnFrame()
 		WriteByte(Save+0x24FE, 0)
 	end
 	if ReadByte(Save + 0x23DF) & 0x2 == 0x2 and not OpenedChest then
-		--print("Opened Right Chest")
+		print("Opened Right Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2
 		WriteByte(Save+0x24FE, 1)
 	end
-
+	
 	if (ReadByte(Save + 0x23DF) & 0x4 == 0x4 or
 	   ReadByte(Save + 0x23DF) & 0x8 == 0x8 or
-	   ReadByte(Save + 0x23DF) & 0x2 == 0x2) and
-	   not OpenedChest then
+	   ReadByte(Save + 0x23DF) & 0x2 == 0x2) then
+		--print("Opened Chest")
 		OpenedChest = true
 	else
 		OpenedChest = false
 	end
-	
-	--warning message
-	--if CheckCount == 10 and not GoA_Warning and not OpenedChest then
-		--WriteInfoBox('WARNING - GoA Bonuses will disappear after 1 more Torn Page/Drive Form/World Unlock!')
-		--GoA_Warning = true
-	--end
-	--lockout message
-	--if CheckCount > 10 and not GoA_Locked and not OpenedChest then
-		--WriteInfoBox('ALERT - GoA Bonuses are now removed.')
-		--GoA_Locked = true
-	--end
-	--reset stuff
+
 	DisplayInfoBox()
 end
 

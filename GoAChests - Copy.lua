@@ -71,9 +71,10 @@ Address = File + (ReadInt(Subpoint,OnPC) - ReadInt(File+8,OnPC)) + Offset
 return Address
 end
 
+inGoA = false
 OpenedChest = false
 GoA_Warning = false
-GoA_Locked = true
+GoA_Locked = false
 infoBoxTick = 0
 doInfoBox = false
 function _OnFrame()
@@ -89,19 +90,7 @@ function _OnFrame()
 	Btl    = ReadShort(Now+0x06)
 	Evt    = ReadShort(Now+0x08)
 
-	Check()
-	if CheckCount == 13 and not GoA_Warning and not OpenedChest then
-		WriteInfoBox('GoA Bonuses are now open!')
-		GoA_Warning = true
-	end
-
-	if CheckCount <= 12 then
-		GoA_Locked = true
-	else
-		GoA_Locked = false
-	end
-
-	if GoA_Locked then --under 13 unlocks, junk chests
+	if GoA_Locked then
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0148, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0169, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0148, OnPC)
@@ -109,7 +98,7 @@ function _OnFrame()
 	if ReadByte(Save + 0x23DF) & 0x4 ~= 0x4 and
 	  ReadByte(Save + 0x23DF) & 0x8 ~= 0x8 and
 	  ReadByte(Save + 0x23DF) & 0x2 ~= 0x2 and
-	  not GoA_Locked then --if the chests are unopened and 13 unlocks
+	  not GoA_Locked then
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC)
@@ -122,6 +111,7 @@ function _OnFrame()
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC)
 		WriteByte(Save+0x24FE, 2)
+		OpenedChest = true
 	end
 	if ReadByte(Save + 0x23DF) & 0x8 == 0x8 and not OpenedChest then
 		--print("Opened Middle Chest")
@@ -131,6 +121,7 @@ function _OnFrame()
 		WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 2)
 		WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 2)
 		WriteByte(Save+0x24FE, 0)
+		OpenedChest = true
 	end
 	if ReadByte(Save + 0x23DF) & 0x2 == 0x2 and not OpenedChest then
 		--print("Opened Right Chest")
@@ -138,28 +129,30 @@ function _OnFrame()
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2
 		WriteByte(Save+0x24FE, 1)
+		OpenedChest = true
 	end
 
-	if (ReadByte(Save + 0x23DF) & 0x4 == 0x4 or
-	   ReadByte(Save + 0x23DF) & 0x8 == 0x8 or
-	   ReadByte(Save + 0x23DF) & 0x2 == 0x2) and
-	   not OpenedChest then
-		OpenedChest = true
-	else
-		OpenedChest = false
+	Check()
+	if ReadInt(inputAddr) == 247042 then --used for soft-reset I guess
+		--print("reset")
+		GoA_Warning = false
+		GoA_Locked = false
 	end
 	
 	--warning message
-	--if CheckCount == 10 and not GoA_Warning and not OpenedChest then
-		--WriteInfoBox('WARNING - GoA Bonuses will disappear after 1 more Torn Page/Drive Form/World Unlock!')
-		--GoA_Warning = true
-	--end
+	if CheckCount == 10 and not GoA_Warning and not OpenedChest then
+		WriteInfoBox('WARNING - GoA Bonuses will disappear after 1 more Torn Page/Drive Form/World Unlock!')
+		GoA_Warning = true
+	end
 	--lockout message
-	--if CheckCount > 10 and not GoA_Locked and not OpenedChest then
-		--WriteInfoBox('ALERT - GoA Bonuses are now removed.')
-		--GoA_Locked = true
-	--end
+	if CheckCount > 10 and not GoA_Locked and not OpenedChest then
+		WriteInfoBox('ALERT - GoA Bonuses are now removed.')
+		GoA_Locked = true
+	end
 	--reset stuff
+	if CheckCount <= 10 then
+		GoA_Locked = false
+	end
 	DisplayInfoBox()
 end
 

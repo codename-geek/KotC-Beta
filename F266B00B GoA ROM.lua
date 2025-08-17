@@ -494,7 +494,7 @@ if Place == 0x2002 and Events(0x01,Null,0x01) then --Station of Serenity Weapons
 		WriteShort(BAR(ARD,0x0A,0xE0),0x1A,OnPC)
 	end
 
-	SilverReplaceObjectives()
+	--SilverReplaceObjectives()
 end
 end
 
@@ -521,6 +521,7 @@ if true then
 		end
 	--For Objectives and/or Proofs Win Con
 	elseif ObjectiveCount == 8 then
+		SilverReplaceObjectives()
 		ObjFix()
 		NoExp()
 		ABN()
@@ -3399,7 +3400,7 @@ if prevObjCount ~= (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) and prevObjCo
 	if ReadByte(Save+0x360B) == 2 then
 		ReplaceFirstVisitObjectives()
 	end
-	SilverReplaceObjectives()
+	--SilverReplaceObjectives()
 	CheckWorlds()
 end
 

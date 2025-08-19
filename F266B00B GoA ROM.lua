@@ -3483,104 +3483,116 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 		BitOr(Save+0x360D,0x1)
 	elseif World == 0x02 and Room == 0x14 and Btl == 0x89 then --Axel 2
 		BitOr(Save+0x360D,0x2)
-	end
-	if ReadByte(Save+0x360D)&0x1 == 0x1 and ReadByte(Save+0x360D)&0x2 == 0x2 then
 		ReplaceSecondVisitObjectives("STT")
 	end
+	--if ReadByte(Save+0x360D)&0x1 == 0x1 and ReadByte(Save+0x360D)&0x2 == 0x2 then
+	--	ReplaceSecondVisitObjectives("STT")
+	--end
 	--HB
 	if World == 0x04 and Room == 0x04 and Btl == 0x37 then --Demyx
 		BitOr(Save+0x360D,0x4)
 	elseif World == 0x04 and Room == 0x01 and Btl == 0x4B then --Sephiroth
 		if ReadByte(Save+0x360D)&0x4 == 0x4 then
 			BitOr(Save+0x360D,0x8)
+			ReplaceSecondVisitObjectives("HB")
 		end
 	elseif World == 0x12 and Room == 0x15 and Btl == 0x8D then --Data Demyx
 		if ReadByte(Save+0x360D)&0x4 == 0x4 then
 			BitOr(Save+0x360D,0x8)
+			ReplaceSecondVisitObjectives("HB")
 		end
 	end
-	if ReadByte(Save+0x360D)&0x4 == 0x4 and ReadByte(Save+0x360D)&0x8 == 0x8 then
-		ReplaceSecondVisitObjectives("HB")
-	end
+	--if ReadByte(Save+0x360D)&0x4 == 0x4 and ReadByte(Save+0x360D)&0x8 == 0x8 then
+	--	ReplaceSecondVisitObjectives("HB")
+	--end
 	--BC
 	if World == 0x05 and Room == 0x0B and Btl == 0x48 then --Thresholder
 		BitOr(Save+0x360D,0x10)
 	elseif World == 0x05 and Room == 0x05 and Btl == 0x4F then --Dark Thorn
 		if ReadByte(Save+0x360D)&0x10 == 0x10 then
 			BitOr(Save+0x360D,0x20)
+			ReplaceSecondVisitObjectives("BC")
 		else
 			BitOr(Save+0x360D,0x10)
 		end
 	elseif World == 0x05 and Room == 0x0F and Btl == 0x52 then --Xaldin
 		if ReadByte(Save+0x360D)&0x10 == 0x10 then
 			BitOr(Save+0x360D,0x20)
+			ReplaceSecondVisitObjectives("BC")
 		end
 	end
-	if ReadByte(Save+0x360D)&0x10 == 0x10 and ReadByte(Save+0x360D)&0x20 == 0x20 then
-		ReplaceSecondVisitObjectives("BC")
-	end
+	--if ReadByte(Save+0x360D)&0x10 == 0x10 and ReadByte(Save+0x360D)&0x20 == 0x20 then
+	--	ReplaceSecondVisitObjectives("BC")
+	--end
 	--OC
 	if World == 0x06 and Room == 0x07 and Btl == 0x72 then --Cerberus
 		BitOr(Save+0x360D,0x40)
 	elseif World == 0x06 and Room == 0x12 and Btl == 0xAB then --Hydra
 		if ReadByte(Save+0x360D)&0x40 == 0x40 then
 			BitOr(Save+0x360D,0x80)
+			ReplaceSecondVisitObjectives("OC")
 		else
 			BitOr(Save+0x360D,0x40)
 		end
 	elseif World == 0x06 and Room == 0x13 and Btl == 0xCA then --Hades
 		if ReadByte(Save+0x360D)&0x40 == 0x40 then
 			BitOr(Save+0x360D,0x80)
+			ReplaceSecondVisitObjectives("OC")
 		end
 	end
-	if ReadByte(Save+0x360D)&0x40 == 0x40 and ReadByte(Save+0x360D)&0x80 == 0x80 then
-		ReplaceSecondVisitObjectives("OC")
-	end
+	--if ReadByte(Save+0x360D)&0x40 == 0x40 and ReadByte(Save+0x360D)&0x80 == 0x80 then
+	--	ReplaceSecondVisitObjectives("OC")
+	--end
 	--0x360E
 	--AG
 	if World == 0x07 and Room == 0x03 and Btl == 0x3B then --Twin Lords
 		BitOr(Save+0x360E,0x1)
 	elseif World == 0x07 and Room == 0x05 and Btl == 0x3E then --Genie Jafar
 		BitOr(Save+0x360E,0x2)
-	end
-	if ReadByte(Save+0x360E)&0x1 == 0x1 and ReadByte(Save+0x360E)&0x2 == 0x2 then
 		ReplaceSecondVisitObjectives("AG")
 	end
+	--if ReadByte(Save+0x360E)&0x1 == 0x1 and ReadByte(Save+0x360E)&0x2 == 0x2 then
+	--	ReplaceSecondVisitObjectives("AG")
+	--end
 	--LoD
 	if World == 0x08 and Room == 0x09 and Btl == 0x4B then --Shan Yu
 		BitOr(Save+0x360E,0x4)
 	elseif World == 0x08 and Room == 0x08 and Btl == 0x4F then --Storm Rider
 		BitOr(Save+0x360E,0x8)
-	end
-	if ReadByte(Save+0x360E)&0x4 == 0x4 and ReadByte(Save+0x360E)&0x8 == 0x8 then
 		ReplaceSecondVisitObjectives("LoD")
 	end
+	--if ReadByte(Save+0x360E)&0x4 == 0x4 and ReadByte(Save+0x360E)&0x8 == 0x8 then
+	--	ReplaceSecondVisitObjectives("LoD")
+	--end
 	--PL
 	if World == 0x0A and Room == 0x0E and Btl == 0x37 then --Scar
 		BitOr(Save+0x360E,0x10)
 	elseif World == 0x0A and Room == 0x0F and Btl == 0x3B then --Groundshaker
 		BitOr(Save+0x360E,0x20)
-	end
-	if ReadByte(Save+0x360E)&0x10 == 0x10 and ReadByte(Save+0x360E)&0x20 == 0x20 then
 		ReplaceSecondVisitObjectives("PL")
 	end
+	--if ReadByte(Save+0x360E)&0x10 == 0x10 and ReadByte(Save+0x360E)&0x20 == 0x20 then
+	--	ReplaceSecondVisitObjectives("PL")
+	--end
 	--HT
 	if World == 0x0E and Room == 0x03 and Btl == 0x34 then --Prison Keeper
 		BitOr(Save+0x360E,0x40)
 	elseif World == 0x0E and Room == 0x09 and Btl == 0x37 then --Oogie Boogie
 		if ReadByte(Save+0x360E)&0x40 == 0x40 then
 			BitOr(Save+0x360E,0x80)
+			ReplaceSecondVisitObjectives("HT")
 		else
 			BitOr(Save+0x360E,0x40)
 		end
 	elseif World == 0x0E and Room == 0x07 and Btl == 0x40 then --Experiment
 		if ReadByte(Save+0x360E)&0x40 == 0x40 then
 			BitOr(Save+0x360E,0x80)
+			ReplaceSecondVisitObjectives("HT")
 		end
 	end
-	if ReadByte(Save+0x360E)&0x40 == 0x40 and ReadByte(Save+0x360E)&0x80 == 0x80 then
-		ReplaceSecondVisitObjectives("HT")
-	end
+	--if ReadByte(Save+0x360E)&0x40 == 0x40 and ReadByte(Save+0x360E)&0x80 == 0x80 then
+	--	ReplaceSecondVisitObjectives("HT")
+	--end
 	--0x3613
 	--PR
 	if World == 0x10 and Room == 0x0A and Btl == 0x3C then --Barbossa
@@ -3588,55 +3600,62 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 	elseif World == 0x10 and Room == 0x12 and Btl == 0x55 then --Grim Reaper 1
 		if ReadByte(Save+0x3613)&0x1 == 0x1 then
 			BitOr(Save+0x3613,0x2)
+			ReplaceSecondVisitObjectives("PR")
 		else
 			BitOr(Save+0x3613,0x1)
 		end
 	elseif World == 0x10 and Room == 0x01 and Btl == 0x36 then --Grim Reaper 2
 		if ReadByte(Save+0x3613)&0x1 == 0x1 then
 			BitOr(Save+0x3613,0x2)
+			ReplaceSecondVisitObjectives("PR")
 		end
 	end
-	if ReadByte(Save+0x3613)&0x1 == 0x1 and ReadByte(Save+0x3613)&0x2 == 0x2 then
-		ReplaceSecondVisitObjectives("PR")
-	end
+	--if ReadByte(Save+0x3613)&0x1 == 0x1 and ReadByte(Save+0x3613)&0x2 == 0x2 then
+	--	ReplaceSecondVisitObjectives("PR")
+	--end
 	--SP
 	if World == 0x11 and Room == 0x04 and Btl == 0x37 then --Hostile Program
 		BitOr(Save+0x3613,0x4)
 	elseif World == 0x11 and Room == 0x09 and Btl == 0x3B then --MCP
 		BitOr(Save+0x3613,0x8)
-	end
-	if ReadByte(Save+0x3613)&0x4 == 0x4 and ReadByte(Save+0x3613)&0x8 == 0x8 then
 		ReplaceSecondVisitObjectives("SP")
 	end
+	--if ReadByte(Save+0x3613)&0x4 == 0x4 and ReadByte(Save+0x3613)&0x8 == 0x8 then
+	--	ReplaceSecondVisitObjectives("SP")
+	--end
 	--TWTNW
 	if World == 0x12 and Room == 0x15 and Btl == 0x41 then --Story Roxas
 		BitOr(Save+0x3613,0x10)
 	elseif World == 0x12 and Room == 0x0A and Btl == 0x39 then --Story Xigbar
 		if ReadByte(Save+0x3613)&0x10 == 0x10 then
 			BitOr(Save+0x3613,0x20)
+			ReplaceSecondVisitObjectives("TWTNW")
 		else
 			BitOr(Save+0x3613,0x10)
 		end
 	elseif World == 0x12 and Room == 0x0E and Btl == 0x3A then --Story Luxord
 		if ReadByte(Save+0x3613)&0x10 == 0x10 then
 			BitOr(Save+0x3613,0x20)
+			ReplaceSecondVisitObjectives("TWTNW")
 		else
 			BitOr(Save+0x3613,0x10)
 		end
 	elseif World == 0x12 and Room == 0x0F and Btl == 0x38 then --Story Saix
 		if ReadByte(Save+0x3613)&0x10 == 0x10 then
 			BitOr(Save+0x3613,0x20)
+			ReplaceSecondVisitObjectives("TWTNW")
 		else
 			BitOr(Save+0x3613,0x10)
 		end
 	elseif World == 0x12 and Room == 0x13 and Btl == 0x3B then --Story Xemnas
 		if ReadByte(Save+0x3613)&0x10 == 0x10 then
 			BitOr(Save+0x3613,0x20)
+			ReplaceSecondVisitObjectives("TWTNW")
 		end
 	end
-	if ReadByte(Save+0x3613)&0x10 == 0x10 and ReadByte(Save+0x3613)&0x20 == 0x20 then
-		ReplaceSecondVisitObjectives("TWTNW")
-	end
+	--if ReadByte(Save+0x3613)&0x10 == 0x10 and ReadByte(Save+0x3613)&0x20 == 0x20 and then
+	--	ReplaceSecondVisitObjectives("TWTNW")
+	--end
 end
 
 function NoExp()

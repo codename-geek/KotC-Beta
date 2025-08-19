@@ -3396,13 +3396,13 @@ function ObjFix()
 --0x360C - unused
 
 --logic for auto-saves maybe
-if prevObjCount ~= (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) and prevObjCount == 0 then
-	if ReadByte(Save+0x360B) == 2 then
-		ReplaceFirstVisitObjectives()
-	end
-	--SilverReplaceObjectives()
-	CheckWorlds()
-end
+--if prevObjCount ~= (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) and prevObjCount == 0 then
+--	if ReadByte(Save+0x360B) == 2 then
+--		ReplaceFirstVisitObjectives()
+--	end
+--	--SilverReplaceObjectives()
+--	CheckWorlds()
+--end
 
 while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) > ReadByte(Save+0x360A) do
 	WriteByte(Save+0x360A,ReadByte(Save+0x360A)+1)

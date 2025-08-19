@@ -3483,7 +3483,9 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 		BitOr(Save+0x360D,0x1)
 	elseif World == 0x02 and Room == 0x14 and Btl == 0x89 then --Axel 2
 		BitOr(Save+0x360D,0x2)
-		ReplaceSecondVisitObjectives("STT")
+		if ReadByte(Save+0x360D)&0x1 == 0x1 then
+			ReplaceSecondVisitObjectives("STT")
+		end
 	end
 	--if ReadByte(Save+0x360D)&0x1 == 0x1 and ReadByte(Save+0x360D)&0x2 == 0x2 then
 	--	ReplaceSecondVisitObjectives("STT")
@@ -3549,7 +3551,9 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 		BitOr(Save+0x360E,0x1)
 	elseif World == 0x07 and Room == 0x05 and Btl == 0x3E then --Genie Jafar
 		BitOr(Save+0x360E,0x2)
-		ReplaceSecondVisitObjectives("AG")
+		if ReadByte(Save+0x360E)&0x1 == 0x1 then
+			ReplaceSecondVisitObjectives("AG")
+		end
 	end
 	--if ReadByte(Save+0x360E)&0x1 == 0x1 and ReadByte(Save+0x360E)&0x2 == 0x2 then
 	--	ReplaceSecondVisitObjectives("AG")
@@ -3559,7 +3563,9 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 		BitOr(Save+0x360E,0x4)
 	elseif World == 0x08 and Room == 0x08 and Btl == 0x4F then --Storm Rider
 		BitOr(Save+0x360E,0x8)
-		ReplaceSecondVisitObjectives("LoD")
+		if ReadByte(Save+0x360E)&0x4 == 0x4 then
+			ReplaceSecondVisitObjectives("LoD")
+		end
 	end
 	--if ReadByte(Save+0x360E)&0x4 == 0x4 and ReadByte(Save+0x360E)&0x8 == 0x8 then
 	--	ReplaceSecondVisitObjectives("LoD")
@@ -3569,7 +3575,9 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 		BitOr(Save+0x360E,0x10)
 	elseif World == 0x0A and Room == 0x0F and Btl == 0x3B then --Groundshaker
 		BitOr(Save+0x360E,0x20)
-		ReplaceSecondVisitObjectives("PL")
+		if ReadByte(Save+0x360E)&0x10 == 0x10 then
+			ReplaceSecondVisitObjectives("PL")
+		end
 	end
 	--if ReadByte(Save+0x360E)&0x10 == 0x10 and ReadByte(Save+0x360E)&0x20 == 0x20 then
 	--	ReplaceSecondVisitObjectives("PL")
@@ -3618,7 +3626,9 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 		BitOr(Save+0x3613,0x4)
 	elseif World == 0x11 and Room == 0x09 and Btl == 0x3B then --MCP
 		BitOr(Save+0x3613,0x8)
-		ReplaceSecondVisitObjectives("SP")
+		if ReadByte(Save+0x3613)&0x4 == 0x4 then
+			ReplaceSecondVisitObjectives("SP")
+		end
 	end
 	--if ReadByte(Save+0x3613)&0x4 == 0x4 and ReadByte(Save+0x3613)&0x8 == 0x8 then
 	--	ReplaceSecondVisitObjectives("SP")

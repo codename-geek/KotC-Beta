@@ -91,15 +91,16 @@ function _OnFrame()
 	Evt    = ReadShort(Now+0x08)
 
 	Check()
+	--print(CheckCount)
 	if CheckCount >= 13 and not GoA_Warning and not OpenedChest then
 		WriteInfoBox('GoA Bonuses are now open!')
 		GoA_Warning = true
+		GoA_Locked = false
 	end
 
 	if CheckCount <= 12 then
+		GoA_Warning = false
 		GoA_Locked = true
-	else
-		GoA_Locked = false
 	end
 
 	if GoA_Locked then --under 13 unlocks, junk chests

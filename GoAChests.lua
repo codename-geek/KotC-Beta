@@ -135,8 +135,8 @@ function _OnFrame()
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
 		if ObjectiveCount ~= 40 then
-			WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 2) --Power Boost
-			WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 2) --Magic Boost
+			WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 3) --Power Boost
+			WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 3) --Magic Boost
 		end
 		WriteByte(Save+0x24FE, 0)
 	end

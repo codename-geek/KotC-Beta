@@ -24,6 +24,8 @@ bulky_lastWorld = 0x00
 infoBoxText = "oops"
 doInfoBox = false
 infoBoxTick = 0
+
+objCountInfoBox = true
 end
 
 function GetVersion() --Define anchor addresses
@@ -70,127 +72,7 @@ if (GAME_ID == 0xF266B00B or GAME_ID == 0xFAF99301) and ENGINE_TYPE == "ENGINE" 
 	MSN = 0x04FA440
 elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 	OnPC = true
-	if ReadString(0x09A92F0,4) == 'KH2J' then --EGS
-		GameVersion = 2
-		print('GoA Epic Version (v.9) - KotC GoA')
-		Now = 0x0716DF8
-		Sve = 0x2A0BF80
-		Save = 0x09A92F0
-		Obj0Pointer = 0x2A24A70
-		Sys3Pointer = 0x2AE5890
-		Btl0Pointer = 0x2AE5898
-		ARDPointer = 0x2A0F268
-		Music = 0x0ABA784
-		Pause = 0x0ABB2B8
-		React = 0x2A10BA2
-		Cntrl = 0x2A16C28
-		Timer = 0x0ABB290
-		Songs = 0x0B657B4
-		GScre = 0x072AEB0
-		GMdal = 0x072B044
-		GKill = 0x0AF6B86
-		CamTyp = 0x0718A98
-		GamSpd = 0x0717214
-		CutNow = 0x0B649D8
-		CutLen = 0x0B649F4
-		CutSkp = 0x0B649DC
-		BtlTyp = 0x2A10E44
-		BtlEnd = 0x2A0F720
-		TxtBox = 0x074DCB0
-		DemCln = 0x2A0F2F4
-		Slot1    = 0x2A22FD8
-		NextSlot = 0x278
-		Point1   = 0x2A0F488
-		NxtPoint = 0x50
-		Gauge1   = 0x2A0F578
-		NxtGauge = 0x48
-		Menu1    = 0x2A10B50
-		NextMenu = 0x8
-		Obj0 = ReadLong(Obj0Pointer)
-		Sys3 = ReadLong(Sys3Pointer)
-		Btl0 = ReadLong(Btl0Pointer)
-		MSN = 0x0BF2C40
-	elseif ReadString(0x09A9830,4) == 'KH2J' then --Steam Global
-		GameVersion = 3
-		print('GoA Steam Global Version (v.1) - KotC GoA')
-		Now = 0x0717008
-		Sve = 0x2A0C4C0
-		Save = 0x09A9830
-		Obj0Pointer = 0x2A24FB0
-		Sys3Pointer = 0x2AE5DD0
-		Btl0Pointer = 0x2AE5DD8
-		ARDPointer = 0x2A0F7A8
-		Music = 0x0ABACC4
-		Pause = 0x0ABB7F8
-		React = 0x2A110E2
-		Cntrl = 0x2A17168
-		Timer = 0x0ABB7D0
-		Songs = 0x0B65CF4
-		GScre = 0x072B130
-		GMdal = 0x072B2C4
-		GKill = 0x0AF70C6
-		CamTyp = 0x0718CA8
-		GamSpd = 0x0717424
-		CutNow = 0x0B64F18
-		CutLen = 0x0B64F34
-		CutSkp = 0x0B64F1C
-		BtlTyp = 0x2A11384
-		BtlEnd = 0x2A0FC60
-		TxtBox = 0x074DF20
-		DemCln = 0x2A0F834
-		Slot1    = 0x2A23518
-		NextSlot = 0x278
-		Point1   = 0x2A0F9C8
-		NxtPoint = 0x50
-		Gauge1   = 0x2A0FAB8
-		NxtGauge = 0x48
-		Menu1    = 0x2A11090
-		NextMenu = 0x8
-		Obj0 = ReadLong(Obj0Pointer)
-		Sys3 = ReadLong(Sys3Pointer)
-		Btl0 = ReadLong(Btl0Pointer)
-		MSN = 0x0BF3340
-	elseif ReadString(0x09A8830,4) == 'KH2J' then --Steam JP
-		GameVersion = 4
-		print('GoA Steam JP Version (v.1) - KotC GoA')
-		Now = 0x0716008
-		Sve = 0x2A0B4C0
-		Save = 0x09A8830
-		Obj0Pointer = 0x2A23FB0
-		Sys3Pointer = 0x2AE4DD0
-		Btl0Pointer = 0x2AE4DD8
-		ARDPointer = 0x2A0E7A8
-		Music = 0x0AB9CC4
-		Pause = 0x0ABA7F8
-		React = 0x2A100E2
-		Cntrl = 0x2A16168
-		Timer = 0x0ABA7D0
-		Songs = 0x0B64CF4
-		GScre = 0x072A130
-		GMdal = 0x072A2C4
-		GKill = 0x0AF60C6
-		CamTyp = 0x0717CA8
-		GamSpd = 0x0716424
-		CutNow = 0x0B63F18
-		CutLen = 0x0B63F34
-		CutSkp = 0x0B63F1C
-		BtlTyp = 0x2A10384
-		BtlEnd = 0x2A0EC60
-		TxtBox = 0x074CF20
-		DemCln = 0x2A0E834
-		Slot1    = 0x2A22518
-		NextSlot = 0x278
-		Point1   = 0x2A0E9C8
-		NxtPoint = 0x50
-		Gauge1   = 0x2A0EAB8
-		NxtGauge = 0x48
-		Menu1    = 0x2A10090
-		NextMenu = 0x8
-		Obj0 = ReadLong(Obj0Pointer)
-		Sys3 = ReadLong(Sys3Pointer)
-		Btl0 = ReadLong(Btl0Pointer)
-		MSN = 0x0BF2340
-	elseif ReadString(0x9A9330,4) == 'KH2J' then --EGS
+	if ReadString(0x9A9330,4) == 'KH2J' then --EGS
 		GameVersion = 5
 		print('GoA Epic Version (v.10) - KotC GoA')
 		Now = 0x0716DF8
@@ -457,6 +339,7 @@ Data()
 WinConInfoBox()
 
 --ScanObjectives()
+CountObjectives()
 end
 
 function NewGame()
@@ -4113,6 +3996,205 @@ function ScanObjectives()
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC)) == 367 then
 		print("Broken | Data Xemnas")
 	end
+end
+
+function CountObjectives()
+	if not objCountInfoBox or ReadShort(BAR(Sys3,0x6,0x4F4),OnPC) ~= 8 then
+		return
+	end
+	local bossCount = 0
+	print("----------------")
+	--SIMULATED TWILIGHT TOWN
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x570), OnPC)) == 363 then
+		print("Silver | Twilight Thorn")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x580), OnPC)) == 363 then
+		print("Silver | Axel 2")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC)) == 365 then
+		print("Gold   | Data Roxas")
+		bossCount = bossCount + 1
+	end
+	--TWILIGHT TOWN
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC)) == 365 then
+		print("Gold   | Data Axel")
+		bossCount = bossCount + 1
+	end
+	--HOLLOW BASTION
+	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 365 then
+		print("Gold   | Story Demyx")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x590), OnPC)) == 365 then
+		print("Gold   | Sephiroth")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC)) == 365 then
+		print("Gold   | Data Demyx")
+		bossCount = bossCount + 1
+	end
+	--LAND OF DRAGONS
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x180), OnPC)) == 363 then
+		print("Silver | Shan-Yu")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC)) == 365 then
+		print("Gold   | Storm Rider")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC)) == 365 then
+		print("Gold   | Data Xigbar")
+		bossCount = bossCount + 1
+	end
+	--BEAST'S CASTLE
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x010), OnPC)) == 363 then
+		print("Silver | Thresholder")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x040), OnPC)) == 363 then
+		print("Silver | Dark Thorn")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x080), OnPC)) == 365 then
+		print("Gold   | Story Xaldin")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC)) == 365 then
+		print("Gold   | Data Xaldin")
+		bossCount = bossCount + 1
+	end
+	--OLYMPUS COLISEUM
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x0C0), OnPC)) == 363 then
+		print("Silver | Cerberus")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x110), OnPC)) == 363 then
+		print("Silver | The Hydra")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x140), OnPC)) == 365 then
+		print("Gold   | Hades")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC)) == 365 then
+		print("Gold   | Zexion")
+		bossCount = bossCount + 1
+	end
+	--DISNEY CASTLE/TIMELESS RIVER
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x270), OnPC)) == 365 then
+		print("Gold   | Future Pete")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC)) == 365 then
+		print("Gold   | Marluxia")
+		bossCount = bossCount + 1
+	end
+	--PORT ROYAL
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x360), OnPC)) == 363 then
+		print("Silver | Barbossa")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 365 then
+		print("Gold   | GR 1")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC)) == 365 then
+		print("Gold   | GR 2")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC)) == 365 then
+		print("Gold   | Data Luxord")
+		bossCount = bossCount + 1
+	end
+	--AGRABAH
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x5A0), OnPC)) == 363 then
+		print("Silver | Twin Lords")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x230), OnPC)) == 365 then
+		print("Gold   | Genie Jafar")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC)) == 365 then
+		print("Gold   | Lexaeus")
+		bossCount = bossCount + 1
+	end
+	--HALLOWEEN TOWN
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x2A0), OnPC)) == 363 then
+		print("Silver | Prison Keeper")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x2E0), OnPC)) == 363 then
+		print("Silver | Oogie Boogie")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x320), OnPC)) == 365 then
+		print("Gold   | Experiment")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC)) == 365 then
+		print("Gold   | Vexen")
+		bossCount = bossCount + 1
+	end
+	--PRIDE LANDS
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x490), OnPC)) == 363 then
+		print("Silver | Scar")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC)) == 365 then
+		print("Gold   | Groundshaker")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC)) == 365 then
+		print("Gold   | Data Saix")
+		bossCount = bossCount + 1
+	end
+	--SPACE PARANOIDS
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x4F0), OnPC)) == 363 then
+		print("Silver | Hostile Program")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x530), OnPC)) == 365 then
+		print("Gold   | MCP")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC)) == 365 then
+		print("Gold   | Larxene")
+		bossCount = bossCount + 1
+	end
+	--THE WORLD THAT NEVER WAS
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xAA0), OnPC)) == 363 then
+		print("Silver | Story Roxas")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x3E0), OnPC)) == 363 then
+		print("Silver | Story Xigbar")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x410), OnPC)) == 363 then
+		print("Silver | Story Luxord")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x420), OnPC)) == 365 then
+		print("Gold   | Story Saix")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x450), OnPC)) == 365 then
+		print("Gold   | Story Xemnas 1")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC)) == 365 then
+		print("Gold   | Data Xemnas")
+		bossCount = bossCount + 1
+	end
+
+	if bossCount == 10 and objCountInfoBox then
+		--WriteInfoBox('ERROR WITH OBJECTIVES - Please reroll the seed to prevent any further issues.')
+		WriteInfoBox('Valid seed rolled.')
+	end
+	objCountInfoBox = false
 end
 
 function TopSlot(items)

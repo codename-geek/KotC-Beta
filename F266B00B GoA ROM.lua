@@ -113,6 +113,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = BASE_ADDR + 0x0BF2C80
 		IsLoaded = 0x09BA310
+		Input = 0x29FAD70
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam Global
 		GameVersion = 6
 		print('GoA Steam Global Version (v.2) - KotC GoA')
@@ -154,6 +155,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = BASE_ADDR + 0x0BF33C0
 		IsLoaded = 0x09BA850
+		Input = 0xBF31A0
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam JP (same as Global for now)
 		GameVersion = 7
 		print('GoA Steam JP Version (v.2) - KotC GoA')
@@ -195,6 +197,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = BASE_ADDR + 0x0BF33C0
 		IsLoaded = 0x09B9850
+		Input = 0xBF31A0
 	end
 end
 if GameVersion ~= 0 then
@@ -396,7 +399,7 @@ if true then
 		ProofCount = ProofCount + 1
 	end
 
-	--For Normal 3 Proof
+	--For Normal 3 Proof Win Condition base rando
 	if ObjectiveCount == 0 then
 		NoExp()
 		if ProofCount >= 3 then --All Proofs Obtained
@@ -413,24 +416,24 @@ if true then
 			SeedCleared = SeedCleared + 1
 			WinCon1 = true
 			if WinCon2 or WinCon3 then
-				WriteInfoBox('Win con 1 achieved - 3 Proofs + 1 Objective - Skip to Final Xemnas Active')
+				WriteInfoBox('3 Proofs + 1 Gold Mark - Skip to Final Xemnas is now open.')
 			else
-				WriteInfoBox('Win con 1 achieved - 3 Proofs + 1 Objective')
+				WriteInfoBox('3 Proofs + 1 Gold Mark - Access to Final Fights is now open.')
 			end
 		end
 		if ProofCount >= 3 and ReadByte(Save+0x363F) >= 1 and CheckCount == 63
 		   and not WinCon4 then --Win Con 1 + ABN
 			WinCon4 = true
-			WriteInfoBox('Alternate win con 1 achieved - ABN - Skip to Final Xemnas Active')
+			WriteInfoBox('ABN + 1 Gold Mark - Skip to Final Xemnas is now open.')
 		end
 		if ProofCount >= 1 and (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) >= ObjectiveCount - 2
 		   and not WinCon2 then --At least 1 Proof + Requisite Objective Count Achieved - 2
 			SeedCleared = SeedCleared + 1
 			WinCon2 = true
 			if WinCon1 or WinCon3 then
-				WriteInfoBox('Win con 2 achieved - 1 Proof + 6 Objectives - Skip to Final Xemnas Active')
+				WriteInfoBox('1 Proof + 6 Objectives - Skip to Final Xemnas is now open.')
 			else
-				WriteInfoBox('Win con 2 achieved - 1 Proof + 6 Objectives')
+				WriteInfoBox('1 Proof + 6 Objectives - Access to Final Fights is now open.')
 			end
 		end
 		if (ReadByte(Save+0x363D) + ReadByte(Save+0x363F) + ReadByte(Save+0x3641)) >= ObjectiveCount
@@ -438,12 +441,12 @@ if true then
 			SeedCleared = SeedCleared + 1
 			WinCon3 = true
 			if WinCon1 or WinCon2 then
-				WriteInfoBox('Win con 3 achieved - 8 Objectives - Skip to Final Xemnas Active')
+				WriteInfoBox('8 Objectives - Skip to Final Xemnas is now open.')
 			else
-				WriteInfoBox('Win con 3 achieved - 8 Objectives')
+				WriteInfoBox('8 Objectives - Access to Final Fights is now open.')
 			end
 		end
-	--For Emblem Hitlist
+	--For Lucky Emblem Hitlist
 	else
 		NoExp()
 		--Increase stats based on Emblems
@@ -483,21 +486,9 @@ if true then
 		WriteByte(Save+0x30D7,def_p)
 		WriteByte(Save+0x31EB,def_p)
 		----party members, add defense
-		--------Force equip no exp
-		--local NoExpCount = 0 --no exps equipped
-		--for Slot = 0,68 do
-		--	local Current = Save + 0x2544 + 2*Slot
-		--	local Ability = ReadShort(Current) & 0x0FFF
-		--	--No Exp Check
-		--	if Ability == 0x0194 and NoExpCount == 0 then
-		--		WriteShort(Current,Ability+0x8000)
-		--		NoExpCount = NoExpCount + 1
-		--	end
+		--if ReadByte(Save+0x363D) >= ObjectiveCount then --Requisite Objective Count Achieved
+		--	SeedCleared = 1
 		--end
-		--------Force equip no exp
-		if ReadByte(Save+0x363D) >= ObjectiveCount then --Requisite Objective Count Achieved
-			SeedCleared = 1
-		end
 	end
 end
 --Garden of Assemblage Rearrangement
@@ -511,11 +502,20 @@ if Place == 0x1A04 then
 		WriteShort(BAR(ARD,0x05,0x25C),0x779,OnPC) --Radiant Garden
 	end
 end
+if ReadInt(Input) ~= lastInput1 then
+	lastInput2 = lastInput1
+	lastInput1 = ReadInt(Input)
+	--print(lastInput1)
+end
 --World Map -> Garden of Assemblage
 if Place == 0x000F then
 	local WarpDoor = false
 	if Door == 0x0C then --The World that Never Was
 		WarpDoor = 0x15
+		if lastInput2 == 41946112 and lastInput1 == 0 and ReadShort(BAR(Sys3,0x6,0x4F4),OnPC) == 8 then
+			WriteInfoBox('Emergency Door Unlock Used - Access to Final Fights is now open.')
+			SeedCleared = 1
+		end
 	elseif Door == 0x03 then --Land of Dragons
 		WarpDoor = 0x16
 	elseif Door == 0x04 then --Beast's Castle
@@ -2859,137 +2859,137 @@ function SilverReplaceObjectives()
 	--print("REPLACING SECOND VISIT OBJECTIVES")
 	--Data Roxas
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC)) == 363 then
-		print("Data Roxas")
+		--print("Data Roxas")
 		WriteShort(BAR(Sys3, 0x7, 0x13E6), ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) + 2, OnPC)
 	end
 	--Story Demyx
 	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
-		print("Story Demyx")
+		--print("Story Demyx")
 		WriteShort(BAR(Btl0, 0x6, 0x460), ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) + 2, OnPC)
 	end
 	--Sephiroth
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x590), OnPC)) == 363 then
-		print("Sephiroth")
+		--print("Sephiroth")
 		WriteInt(BAR(Btl0, 0x6, 0x590), ReadInt(BAR(Btl0, 0x6, 0x590), OnPC) + 2, OnPC)
 	end
 	--Data Demyx
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC)) == 363 then
-		print("Data Demyx")
+		--print("Data Demyx")
 		WriteShort(BAR(Sys3, 0x7, 0x1392), ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) + 2, OnPC)
 	end
 	--Future Pete
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x270), OnPC)) == 363 then
-		print("Future Pete")
+		--print("Future Pete")
 		WriteInt(BAR(Btl0, 0x6, 0x270), ReadInt(BAR(Btl0, 0x6, 0x270), OnPC) + 2, OnPC)
 	end
 	--Marluxia
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC)) == 363 then
-		print("Marluxia")
+		--print("Marluxia")
 		WriteInt(BAR(Btl0, 0x6, 0xA40), ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) + 2, OnPC)
 	end
 	--Hades
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x140), OnPC)) == 363 then
-		print("Hades")
+		--print("Hades")
 		WriteInt(BAR(Btl0, 0x6, 0x140), ReadInt(BAR(Btl0, 0x6, 0x140), OnPC) + 2, OnPC)
 	end
 	--Zexion
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC)) == 363 then
-		print("Zexion")
+		--print("Zexion")
 		WriteInt(BAR(Btl0, 0x6, 0xA10), ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) + 2, OnPC)
 	end
 	--Storm Rider
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC)) == 363 then
-		print("Storm Rider")
+		--print("Storm Rider")
 		WriteInt(BAR(Btl0, 0x6, 0x1C0), ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC) + 2, OnPC)
 	end
 	--Data Xigbar
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC)) == 363 then
-		print("Data Xigbar")
+		--print("Data Xigbar")
 		WriteShort(BAR(Sys3, 0x7, 0x13C2), ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) + 2, OnPC)
 	end
 	--Groundshaker
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC)) == 363 then
-		print("Groundshaker")
+		--print("Groundshaker")
 		WriteInt(BAR(Btl0, 0x6, 0x4D0), ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC) + 2, OnPC)
 	end
 	--Data Saix
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC)) == 363 then
-		print("Data Saix")
+		--print("Data Saix")
 		WriteShort(BAR(Sys3, 0x7, 0x13CE), ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) + 2, OnPC)
 	end
 	--Experiment
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x320), OnPC)) == 363 then
-		print("Experiment")
+		--print("Experiment")
 		WriteInt(BAR(Btl0, 0x6, 0x320), ReadInt(BAR(Btl0, 0x6, 0x320), OnPC) + 2, OnPC)
 	end
 	--Vexen
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC)) == 363 then
-		print("Vexen")
+		--print("Vexen")
 		WriteInt(BAR(Btl0, 0x6, 0x9B0), ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) + 2, OnPC)
 	end
 	--MCP
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x530), OnPC)) == 363 then
-		print("MCP")
+		--print("MCP")
 		WriteInt(BAR(Btl0, 0x6, 0x530), ReadInt(BAR(Btl0, 0x6, 0x530), OnPC) + 2, OnPC)
 	end
 	--Larxene
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC)) == 363 then
-		print("Larxene")
+		--print("Larxene")
 		WriteInt(BAR(Btl0, 0x6, 0xA70), ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) + 2, OnPC)
 	end
 	--Data Axel
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC)) == 363 then
-		print("Data Axel")
+		--print("Data Axel")
 		WriteShort(BAR(Sys3, 0x7, 0x13AA), ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) + 2, OnPC)
 	end
 	--Story Xaldin
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x080), OnPC)) == 363 then
-		print("Story Xaldin")
+		--print("Story Xaldin")
 		WriteInt(BAR(Btl0, 0x6, 0x080), ReadInt(BAR(Btl0, 0x6, 0x080), OnPC) + 2, OnPC)
 	end
 	--Data Xaldin
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC)) == 363 then
-		print("Data Xaldin")
+		--print("Data Xaldin")
 		WriteShort(BAR(Sys3, 0x7, 0x139E), ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) + 2, OnPC)
 	end
 	--Genie Jafar
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x230), OnPC)) == 363 then
-		print("Genie Jafar")
+		--print("Genie Jafar")
 		WriteInt(BAR(Btl0, 0x6, 0x230), ReadInt(BAR(Btl0, 0x6, 0x230), OnPC) + 2, OnPC)
 	end
 	--Lexaeus
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC)) == 363 then
-		print("Lexaeus")
+		--print("Lexaeus")
 		WriteInt(BAR(Btl0, 0x6, 0x9E0), ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) + 2, OnPC)
 	end
 	--GR 1
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 363 then
-		print("GR 1")
+		--print("GR 1")
 		WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 2, OnPC)
 	end
 	--GR 2
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC)) == 363 then
-		print("GR 2")
+		--print("GR 2")
 		WriteInt(BAR(Btl0, 0x6, 0x3A0), ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC) + 2, OnPC)
 	end
 	--Data Luxord
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC)) == 363 then
-		print("Data Luxord")
+		--print("Data Luxord")
 		WriteShort(BAR(Sys3, 0x7, 0x13DA), ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) + 2, OnPC)
 	end
 	--Story Saix
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x420), OnPC)) == 363 then
-		print("Story Saix")
+		--print("Story Saix")
 		WriteInt(BAR(Btl0, 0x6, 0x420), ReadInt(BAR(Btl0, 0x6, 0x420), OnPC) + 2, OnPC)
 	end
 	--Story Xemnas 1
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x450), OnPC)) == 363 then
-		print("Story Xemnas 1")
+		--print("Story Xemnas 1")
 		WriteInt(BAR(Btl0, 0x6, 0x450), ReadInt(BAR(Btl0, 0x6, 0x450), OnPC) + 2, OnPC)
 	end
 	--Data Xemnas
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC)) == 363 then
-		print("Data Xemnas")
+		--print("Data Xemnas")
 		WriteShort(BAR(Sys3, 0x7, 0x13B6), ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) + 2, OnPC)
 	end
 end
@@ -3999,6 +3999,7 @@ function ScanObjectives()
 end
 
 function CountObjectives()
+	--This code should only run once at the start of the seed on title screen
 	if not objCountInfoBox or ReadShort(BAR(Sys3,0x6,0x4F4),OnPC) ~= 8 then
 		return
 	end
@@ -4191,8 +4192,11 @@ function CountObjectives()
 	end
 
 	if bossCount == 10 and objCountInfoBox then
-		--WriteInfoBox('ERROR WITH OBJECTIVES - Please reroll the seed to prevent any further issues.')
-		WriteInfoBox('Valid seed rolled.')
+		--No Info Box
+		print('Valid seed rolled.')
+	else
+		--Should show in-game as soon as the Dream Weapon Room loads in
+		WriteInfoBox('SEED ERROR - There are issues loading the objectives. Please reroll and message Geek about this seed!')
 	end
 	objCountInfoBox = false
 end

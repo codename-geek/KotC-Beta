@@ -1,5 +1,5 @@
-title: (BETA) King of the Crown Tourney Mod Pack v8.5
-description: ------------------------------------------------------ Place Above Seed for Path w/ Objectives,             Place Below Seed for Darts & Lucky Hitlist ------------------------------------------------------ PS2 Duck Flare | Cutscene Skipper | Accurate Growth Text | Information Box | KotC GoA | Custom AntiCheese | Drive Adjustments | Bonus Speed Up | GoA Perks
+title: (BETA) King of the Crown Modpack v1.2
+description: Patch notes | 1.2 - Updated Cutscene Skipper ------------------------------------------------------ Place Above Seed for Path w/ Objectives,             Place Below Seed for Darts & Lucky Hitlist ------------------------------------------------------ PS2 Duck Flare | Cutscene Skipper | Accurate Growth Text | Information Box | KotC GoA | Custom AntiCheese | Drive Adjustments | Bonus Speed Up | GoA Perks
 assets:
 # Lua Scripts
 - name: scripts/CustomAntiCheese.lua
@@ -30,10 +30,6 @@ assets:
   method: copy
   source:
   - name: EnablersAP.lua
-#- name: scripts/DreamWeapon.lua
-#  method: copy
-#  source:
-#  - name: DreamWeapon.lua
 - name: scripts/GoAChests.lua
   method: copy
   source:

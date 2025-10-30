@@ -6,7 +6,7 @@ assets:
   method: copy
   source:
   - name: CustomAntiCheese.lua
-- name: scripts/CutsceneSkipper.lua
+- name: scripts/Cutscene Skipper.lua
   method: copy
   source:
   - name: Cutscene Skipper.lua

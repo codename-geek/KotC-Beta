@@ -1,5 +1,5 @@
-title: (BETA) King of the Crown Modpack v1.3.2
-description: Patch notes | 1.3.2 - Optimized mod code to mitigate some performance issues, removed cutscene skipper ------------------------------------------------------ Place Above Seed for Path w/ Objectives,             Place Below Seed for Darts & Lucky Hitlist ------------------------------------------------------ PS2 Duck Flare | Cutscene Skipper | Accurate Growth Text | Information Box | KotC GoA | Custom AntiCheese | Drive Adjustments | Bonus Speed Up | GoA Perks
+title: (BETA) King of the Crown Modpack v1.3.3
+description: Patch notes | 1.3.3 - Optimized mod code to mitigate some performance issues, removed cutscene skipper ------------------------------------------------------ Place Above Seed for Path w/ Objectives,             Place Below Seed for Darts & Lucky Hitlist ------------------------------------------------------ PS2 Duck Flare | Cutscene Skipper | Accurate Growth Text | Information Box | KotC GoA | Custom AntiCheese | Drive Adjustments | Bonus Speed Up | GoA Perks
 assets:
 # Lua Scripts
 - name: scripts/CustomAntiCheese.lua

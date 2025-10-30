@@ -51,9 +51,9 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 end
 end
 
-function Events(M,B,E) --Check for Map, Btl, and Evt
-return ((Map == M or not M) and (Btl == B or not B) and (Evt == E or not E))
-end
+--function Events(M,B,E) --Check for Map, Btl, and Evt
+--return ((Map == M or not M) and (Btl == B or not B) and (Evt == E or not E))
+--end
 
 function BAR(File,Subfile,Offset) --Get address within a BAR file
 local Subpoint = File + 0x08 + 0x10*Subfile
@@ -79,16 +79,16 @@ doInfoBox = false
 function _OnFrame()
 	if GameVersion == 0 then --Get anchor addresses
 		GetVersion()
+		ObjectiveCount = ReadShort(BAR(Sys3,0x6,0x4F4),OnPC)
 		return
 	end
-	local ObjectiveCount = ReadShort(BAR(Sys3,0x6,0x4F4),OnPC)
 
 	World  = ReadByte(Now+0x00)
 	Room   = ReadByte(Now+0x01)
-	Place  = ReadShort(Now+0x00)
-	Map    = ReadShort(Now+0x04)
-	Btl    = ReadShort(Now+0x06)
-	Evt    = ReadShort(Now+0x08)
+	--Place  = ReadShort(Now+0x00)
+	--Map    = ReadShort(Now+0x04)
+	--Btl    = ReadShort(Now+0x06)
+	--Evt    = ReadShort(Now+0x08)
 
 	Check()
 	--print(CheckCount)
@@ -96,6 +96,10 @@ function _OnFrame()
 		WriteInfoBox('GoA Bonuses are now open!')
 		GoA_Warning = true
 		GoA_Locked = false
+
+		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC)
+		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC)
+		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC)
 	end
 
 	if CheckCount <= 12 then
@@ -103,33 +107,29 @@ function _OnFrame()
 		GoA_Locked = true
 	end
 
-	if World == 0x04 and Room == 0x1A then --if in exactly the GoA room
-		if GoA_Warning then
-			WriteShort(BAR(Sys3,0x2,0x04BA),0x20,OnPC) --Unlock Chest RC in GoA
-		else
-			WriteShort(BAR(Sys3,0x2,0x04BA),0x00,OnPC) --Lock Chest RC in GoA
-		end
+	if World == 0x04 and Room == 0x1A and not GoA_Warning then --if in exactly the GoA room
+		WriteShort(BAR(Sys3,0x2,0x04BA),0x00,OnPC) --Lock Chest RC in GoA
 	else --everywhere else
-		WriteShort(BAR(Sys3,0x2,0x04BA),0x20,OnPC)
+		WriteShort(BAR(Sys3,0x2,0x04BA),0x20,OnPC) --Unlock Chest RC in GoA
 	end
 
-	if GoA_Locked then --under 13 unlocks, junk chests
-		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0148, OnPC)
-		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0169, OnPC)
-		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0148, OnPC)
-	end
-	if ReadByte(Save + 0x23DF) & 0x4 ~= 0x4 and
-	  ReadByte(Save + 0x23DF) & 0x8 ~= 0x8 and
-	  ReadByte(Save + 0x23DF) & 0x2 ~= 0x2 and
-	  not GoA_Locked then --if the chests are unopened and 13 unlocks
-		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC)
-		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC)
-		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC)
-		OpenedChest = false
-	end
+	--if GoA_Locked then --under 13 unlocks, junk chests
+	--	WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0148, OnPC)
+	--	WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0169, OnPC)
+	--	WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0148, OnPC)
+	--end
+	--if ReadByte(Save + 0x23DF) & 0x4 ~= 0x4 and
+	--  ReadByte(Save + 0x23DF) & 0x8 ~= 0x8 and
+	--  ReadByte(Save + 0x23DF) & 0x2 ~= 0x2 and
+	--  not GoA_Locked then --if the chests are unopened and 13 unlocks
+	--	WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC)
+	--	WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC)
+	--	WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC)
+	--	OpenedChest = false
+	--end
 
 	if ReadByte(Save + 0x23DF) & 0x4 == 0x4 and not OpenedChest then
-		--print("Opened Left Chest")
+		print("Opened Left Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		if ObjectiveCount == 40 then
@@ -140,7 +140,7 @@ function _OnFrame()
 		WriteByte(Save+0x24FE, 2)
 	end
 	if ReadByte(Save + 0x23DF) & 0x8 == 0x8 and not OpenedChest then
-		--print("Opened Middle Chest")
+		print("Opened Middle Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0187, OnPC) --Air Combo Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
@@ -151,7 +151,7 @@ function _OnFrame()
 		WriteByte(Save+0x24FE, 0)
 	end
 	if ReadByte(Save + 0x23DF) & 0x2 == 0x2 and not OpenedChest then
-		--print("Opened Right Chest")
+		print("Opened Right Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2

@@ -1,45 +1,55 @@
 title: (BETA) King of the Crown Modpack v1.3
 description: Patch notes | 1.3 - Updated Cutscene Skipper, Perks now use synth-notif in the GoA, Nerfed Middle Perk to only have +1 str/magic instead of +3 ------------------------------------------------------ Place Above Seed for Path w/ Objectives,             Place Below Seed for Darts & Lucky Hitlist ------------------------------------------------------ PS2 Duck Flare | Cutscene Skipper | Accurate Growth Text | Information Box | KotC GoA | Custom AntiCheese | Drive Adjustments | Bonus Speed Up | GoA Perks
 isCollection: true
+collectionGames:
+- "kh2"
 assets:
 # Lua Scripts
 - name: scripts/CustomAntiCheese.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: CustomAntiCheese.lua
 - name: scripts/CutsceneSkipper.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: Cutscene Skipper.lua
 - name: scripts/AccurateGrowthText.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: AccurateGrowthText.lua
 - name: scripts/F266B00B GoA ROM.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: F266B00B GoA ROM.lua
 - name: scripts/DrivesChanges.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: DrivesChanges.lua
 - name: scripts/BonusSpeedUp.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: BonusSpeedUp.lua
 - name: scripts/EnablersAP.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: EnablersAP.lua
 - name: scripts/GoAChests.lua
   method: copy
+  game: "kh2"
   collectionOptional: false
   source:
   - name: GoAChests.lua

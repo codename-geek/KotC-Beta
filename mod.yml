@@ -8,7 +8,7 @@ assets:
 - name: scripts/CustomAntiCheese.lua
   method: copy
   game: "kh2"
-  collectionOptional: false
+  collectionOptional: true
   source:
   - name: CustomAntiCheese.lua
 - name: scripts/CutsceneSkipper.lua
@@ -20,7 +20,7 @@ assets:
 - name: scripts/AccurateGrowthText.lua
   method: copy
   game: "kh2"
-  collectionOptional: false
+  collectionOptional: true
   source:
   - name: AccurateGrowthText.lua
 - name: scripts/F266B00B GoA ROM.lua
@@ -32,13 +32,13 @@ assets:
 - name: scripts/DrivesChanges.lua
   method: copy
   game: "kh2"
-  collectionOptional: false
+  collectionOptional: true
   source:
   - name: DrivesChanges.lua
 - name: scripts/BonusSpeedUp.lua
   method: copy
   game: "kh2"
-  collectionOptional: false
+  collectionOptional: true
   source:
   - name: BonusSpeedUp.lua
 - name: scripts/EnablersAP.lua
@@ -50,7 +50,7 @@ assets:
 - name: scripts/GoAChests.lua
   method: copy
   game: "kh2"
-  collectionOptional: false
+  collectionOptional: true
   source:
   - name: GoAChests.lua
 # Completion Mark text changes

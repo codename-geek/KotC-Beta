@@ -26,8 +26,6 @@ doInfoBox = false
 infoBoxTick = 0
 
 objCountInfoBox = true
-
-shortBurst = 0
 end
 
 function GetVersion() --Define anchor addresses
@@ -2857,10 +2855,6 @@ function ReplaceFirstVisitObjectives()
 end
 
 function SilverReplaceObjectives()
-	if shortBurst > 19 then
-		return
-	end
-	shortBurst = shortBurst + 1
 	--print("REPLACING SECOND VISIT OBJECTIVES")
 	--Data Roxas
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC)) == 363 then

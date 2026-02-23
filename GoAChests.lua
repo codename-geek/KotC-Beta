@@ -73,9 +73,10 @@ end
 
 OpenedChest = false
 GoA_Warning = false
-GoA_Locked = true
 infoBoxTick = 0
+prizeBoxTick = 0
 doInfoBox = false
+redisplay = true
 function _OnFrame()
 	if GameVersion == 0 then --Get anchor addresses
 		GetVersion()
@@ -90,12 +91,22 @@ function _OnFrame()
 	--Btl    = ReadShort(Now+0x06)
 	--Evt    = ReadShort(Now+0x08)
 
+	-- Redisplay
+	if GoA_Warning then
+		if World == 0x04 and Room == 0x1A and redisplay and not OpenedChest then
+			WritePrizeBox('GoA Bonus Choice')
+			redisplay = false
+		end
+		if World ~= 0x04 or Room ~= 0x1A then
+			redisplay = true
+		end
+	end
+
 	Check()
 	--print(CheckCount)
 	if CheckCount >= 13 and not GoA_Warning and not OpenedChest then
 		WriteInfoBox('GoA Bonuses are now open!')
 		GoA_Warning = true
-		GoA_Locked = false
 
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC)
@@ -104,7 +115,6 @@ function _OnFrame()
 
 	if CheckCount <= 12 then
 		GoA_Warning = false
-		GoA_Locked = true
 	end
 
 	if World == 0x04 and Room == 0x1A and not GoA_Warning then --if in exactly the GoA room
@@ -113,23 +123,8 @@ function _OnFrame()
 		WriteShort(BAR(Sys3,0x2,0x04BA),0x20,OnPC) --Unlock Chest RC in GoA
 	end
 
-	--if GoA_Locked then --under 13 unlocks, junk chests
-	--	WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0148, OnPC)
-	--	WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0169, OnPC)
-	--	WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0148, OnPC)
-	--end
-	--if ReadByte(Save + 0x23DF) & 0x4 ~= 0x4 and
-	--  ReadByte(Save + 0x23DF) & 0x8 ~= 0x8 and
-	--  ReadByte(Save + 0x23DF) & 0x2 ~= 0x2 and
-	--  not GoA_Locked then --if the chests are unopened and 13 unlocks
-	--	WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC)
-	--	WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC)
-	--	WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC)
-	--	OpenedChest = false
-	--end
-
 	if ReadByte(Save + 0x23DF) & 0x4 == 0x4 and not OpenedChest then
-		print("Opened Left Chest")
+		--print("Opened Left Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0191, OnPC) --Experience Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		if ObjectiveCount == 40 then
@@ -140,18 +135,18 @@ function _OnFrame()
 		WriteByte(Save+0x24FE, 2)
 	end
 	if ReadByte(Save + 0x23DF) & 0x8 == 0x8 and not OpenedChest then
-		print("Opened Middle Chest")
+		--print("Opened Middle Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0187, OnPC) --Air Combo Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
 		if ObjectiveCount ~= 40 then
-			WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 3) --Power Boost
-			WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 3) --Magic Boost
+			WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 1) --Power Boost
+			WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 1) --Magic Boost
 		end
 		WriteByte(Save+0x24FE, 0)
 	end
 	if ReadByte(Save + 0x23DF) & 0x2 == 0x2 and not OpenedChest then
-		print("Opened Right Chest")
+		--print("Opened Right Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2
@@ -168,6 +163,7 @@ function _OnFrame()
 	end
 
 	DisplayInfoBox()
+	DisplayPrizeBox()
 end
 
 --Get Progression Item Count (Pages + Drives + Unlocks)
@@ -329,6 +325,20 @@ function ShowInfoBox()
 	end
 end
 
+function WritePrizeBox(text)
+	if GameVersion > 1 then
+		infoBoxText = text
+		txt = Text2khscii(text)
+		WriteArray(0x800104, txt)
+		doPrizeBox = true
+	end
+end
+function ShowPrizeBox()
+	if GameVersion > 1 then
+		WriteByte(0x800000, 0x02)
+	end
+end
+
 function DisplayInfoBox() --Used to check when the wincon is achieved at when to display it
 	if ReadByte(Cntrl) == 0 and (ReadByte(BtlTyp) >= 0 and ReadByte(BtlTyp) <= 2)
 	   and doInfoBox and ReadByte(IsLoaded) == 0 then
@@ -338,6 +348,18 @@ function DisplayInfoBox() --Used to check when the wincon is achieved at when to
 			ShowInfoBox()
 			doInfoBox = false
 			infoBoxTick = 0
+		end
+	end
+end
+function DisplayPrizeBox()
+	if ReadByte(Cntrl) == 0 and (ReadByte(BtlTyp) >= 0 and ReadByte(BtlTyp) <= 2)
+	   and doPrizeBox and ReadByte(IsLoaded) == 0 then
+		prizeBoxTick = prizeBoxTick + 1
+		if prizeBoxTick > 15 then --after 15 frames?
+			print(infoBoxText)
+			ShowPrizeBox()
+			doPrizeBox = false
+			prizeBoxTick = 0
 		end
 	end
 end

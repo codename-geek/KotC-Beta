@@ -154,7 +154,7 @@ function _OnFrame()
 	if ReadByte(Save + 0x23DF) & 0x2 == 0x2 and not OpenedChest then
 		--print("Opened Right Chest")
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
-		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
+		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0067, OnPC)
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2
 		WriteByte(Save+0x24FE, 1)
 	end

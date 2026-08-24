@@ -2812,6 +2812,16 @@ function ReplaceFirstVisitObjectives()
 		--print("Barbossa")
 		WriteInt(BAR(Btl0, 0x6, 0x360), ReadInt(BAR(Btl0, 0x6, 0x360), OnPC) + 4, OnPC)
 	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 363 then
+		--print("GR 1")
+		WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 4, OnPC)
+	end
+
+	-- HOLLOW BASTION
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
+		--print("Story Demyx")
+		WriteInt(BAR(Btl0, 0x6, 0x460), ReadInt(BAR(Btl0, 0x6, 0x460), OnPC) + 4, OnPC)
+	end
 
 	-- PRIDE LANDS
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x490), OnPC)) == 363 then
@@ -2856,15 +2866,34 @@ end
 
 function SilverReplaceObjectives()
 	--print("REPLACING SECOND VISIT OBJECTIVES")
+	--Change from Silver Marks to Gold Marks
+	----STT
 	--Data Roxas
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC)) == 363 then
 		--print("Data Roxas")
 		WriteShort(BAR(Sys3, 0x7, 0x13E6), ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC) + 2, OnPC)
 	end
-	--Story Demyx
-	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
-		--print("Story Demyx")
-		WriteShort(BAR(Btl0, 0x6, 0x460), ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) + 2, OnPC)
+	----TT
+	--Betwixt & Between
+	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x9A0), OnPC)) == 363 then
+		--print("Betwixt & Between")
+		WriteShort(BAR(Btl0, 0x6, 0x9A0), ReadShort(BAR(Btl0, 0x6, 0x9A0), OnPC) + 2, OnPC)
+	end
+	--Data Axel
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC)) == 363 then
+		--print("Data Axel")
+		WriteShort(BAR(Sys3, 0x7, 0x13AA), ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) + 2, OnPC)
+	end
+	----HB
+	----Story Demyx
+	--if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
+	--	--print("Story Demyx")
+	--	WriteShort(BAR(Btl0, 0x6, 0x460), ReadShort(BAR(Btl0, 0x6, 0x460), OnPC) + 2, OnPC)
+	--end
+	--1000 Heartless
+	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x920), OnPC)) == 363 then
+		--print("1000 Heartless")
+		WriteShort(BAR(Btl0, 0x6, 0x920), ReadShort(BAR(Btl0, 0x6, 0x920), OnPC) + 2, OnPC)
 	end
 	--Sephiroth
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x590), OnPC)) == 363 then
@@ -2876,6 +2905,7 @@ function SilverReplaceObjectives()
 		--print("Data Demyx")
 		WriteShort(BAR(Sys3, 0x7, 0x1392), ReadShort(BAR(Sys3, 0x7, 0x1392), OnPC) + 2, OnPC)
 	end
+	----DC/TR
 	--Future Pete
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x270), OnPC)) == 363 then
 		--print("Future Pete")
@@ -2886,6 +2916,7 @@ function SilverReplaceObjectives()
 		--print("Marluxia")
 		WriteInt(BAR(Btl0, 0x6, 0xA40), ReadInt(BAR(Btl0, 0x6, 0xA40), OnPC) + 2, OnPC)
 	end
+	----OC
 	--Hades
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x140), OnPC)) == 363 then
 		--print("Hades")
@@ -2896,6 +2927,7 @@ function SilverReplaceObjectives()
 		--print("Zexion")
 		WriteInt(BAR(Btl0, 0x6, 0xA10), ReadInt(BAR(Btl0, 0x6, 0xA10), OnPC) + 2, OnPC)
 	end
+	----LoD
 	--Storm Rider
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x1C0), OnPC)) == 363 then
 		--print("Storm Rider")
@@ -2906,6 +2938,7 @@ function SilverReplaceObjectives()
 		--print("Data Xigbar")
 		WriteShort(BAR(Sys3, 0x7, 0x13C2), ReadShort(BAR(Sys3, 0x7, 0x13C2), OnPC) + 2, OnPC)
 	end
+	----PL
 	--Groundshaker
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x4D0), OnPC)) == 363 then
 		--print("Groundshaker")
@@ -2916,6 +2949,7 @@ function SilverReplaceObjectives()
 		--print("Data Saix")
 		WriteShort(BAR(Sys3, 0x7, 0x13CE), ReadShort(BAR(Sys3, 0x7, 0x13CE), OnPC) + 2, OnPC)
 	end
+	----HT
 	--Experiment
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x320), OnPC)) == 363 then
 		--print("Experiment")
@@ -2926,6 +2960,7 @@ function SilverReplaceObjectives()
 		--print("Vexen")
 		WriteInt(BAR(Btl0, 0x6, 0x9B0), ReadInt(BAR(Btl0, 0x6, 0x9B0), OnPC) + 2, OnPC)
 	end
+	----SP
 	--MCP
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x530), OnPC)) == 363 then
 		--print("MCP")
@@ -2936,11 +2971,7 @@ function SilverReplaceObjectives()
 		--print("Larxene")
 		WriteInt(BAR(Btl0, 0x6, 0xA70), ReadInt(BAR(Btl0, 0x6, 0xA70), OnPC) + 2, OnPC)
 	end
-	--Data Axel
-	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC)) == 363 then
-		--print("Data Axel")
-		WriteShort(BAR(Sys3, 0x7, 0x13AA), ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC) + 2, OnPC)
-	end
+	----BC
 	--Story Xaldin
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x080), OnPC)) == 363 then
 		--print("Story Xaldin")
@@ -2951,6 +2982,7 @@ function SilverReplaceObjectives()
 		--print("Data Xaldin")
 		WriteShort(BAR(Sys3, 0x7, 0x139E), ReadShort(BAR(Sys3, 0x7, 0x139E), OnPC) + 2, OnPC)
 	end
+	----AG
 	--Genie Jafar
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x230), OnPC)) == 363 then
 		--print("Genie Jafar")
@@ -2961,11 +2993,12 @@ function SilverReplaceObjectives()
 		--print("Lexaeus")
 		WriteInt(BAR(Btl0, 0x6, 0x9E0), ReadInt(BAR(Btl0, 0x6, 0x9E0), OnPC) + 2, OnPC)
 	end
-	--GR 1
-	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 363 then
-		--print("GR 1")
-		WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 2, OnPC)
-	end
+	----PR
+	----GR 1
+	--if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 363 then
+	--	--print("GR 1")
+	--	WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 2, OnPC)
+	--end
 	--GR 2
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC)) == 363 then
 		--print("GR 2")
@@ -2976,6 +3009,7 @@ function SilverReplaceObjectives()
 		--print("Data Luxord")
 		WriteShort(BAR(Sys3, 0x7, 0x13DA), ReadShort(BAR(Sys3, 0x7, 0x13DA), OnPC) + 2, OnPC)
 	end
+	----TWTNW
 	--Story Saix
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x420), OnPC)) == 363 then
 		--print("Story Saix")
@@ -2990,6 +3024,12 @@ function SilverReplaceObjectives()
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC)) == 363 then
 		--print("Data Xemnas")
 		WriteShort(BAR(Sys3, 0x7, 0x13B6), ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC) + 2, OnPC)
+	end
+	----100AW
+	--Pooh Yeet
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x11FA), OnPC)) == 363 then
+		--print("Pooh Yeet")
+		WriteShort(BAR(Sys3, 0x7, 0x11FA), ReadShort(BAR(Sys3, 0x7, 0x11FA), OnPC) + 2, OnPC)
 	end
 end
 
@@ -3019,6 +3059,18 @@ function ReplaceFirstVisitObjectivesName(world)
 			--print("Axel 2")
 			WriteInt(BAR(Btl0, 0x6, 0x580), ReadInt(BAR(Btl0, 0x6, 0x580), OnPC) + 4, OnPC)
 		end
+	elseif world == "PR" then
+		-- PORT ROYAL
+		if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 363 then
+			--print("GR 1")
+			WriteInt(BAR(Btl0, 0x6, 0x8E0), ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC) + 4, OnPC)
+		end
+	elseif world == "HB" then
+		-- HOLLOW BASTION
+		if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
+			--print("Story Demyx")
+			WriteInt(BAR(Btl0, 0x6, 0x460), ReadInt(BAR(Btl0, 0x6, 0x460), OnPC) + 4, OnPC)
+		end
 	elseif world == "TWTNW" then
 		-- THE WORLD THAT NEVER WAS
 		if TopSlot(ReadInt(BAR(Btl0, 0x6, 0xAA0), OnPC)) == 363 then
@@ -3044,6 +3096,7 @@ end
 
 function ReplaceSecondVisitObjectives(world)
 	--print("REPLACING SECOND VISIT OBJECTIVES")
+	--This is replacing Gold Marks with Broken Marks to prevent getting more than 2 non-broken marks in the world
 	if world == "STT" then
 		--Data Roxas
 		if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13E6), OnPC)) == 365 then
@@ -3296,6 +3349,9 @@ while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) > ReadByte(Save+0x360A) do
 		ReplaceFirstVisitObjectivesName("STT")
 	elseif World == 0x02 and Room == 0x14 and Btl == 0x89 then --Axel 2
 		FVB = true
+	--HB
+	elseif World == 0x04 and Room == 0x04 and Btl == 0x37 then --Story Demyx
+		FVB = true
 	--BC
 	elseif World == 0x05 and Room == 0x0B and Btl == 0x48 then --Thresholder
 		FVB = true
@@ -3325,6 +3381,9 @@ while (ReadByte(Save+0x363D) + ReadByte(Save+0x363F)) > ReadByte(Save+0x360A) do
 		FVB = true
 	--PR
 	elseif World == 0x10 and Room == 0x0A and Btl == 0x3C then --Barbossa
+		FVB = true
+		ReplaceFirstVisitObjectivesName("PR")
+	elseif World == 0x10 and Room == 0x12 and Btl == 0x55 then --Grim Reaper 1
 		FVB = true
 	--SP
 	elseif World == 0x11 and Room == 0x04 and Btl == 0x37 then --Hostile Program
@@ -3375,6 +3434,13 @@ function CheckWorlds() --used with the above function and loading a save/autosav
 	--HB
 	if World == 0x04 and Room == 0x04 and Btl == 0x37 then --Demyx
 		BitOr(Save+0x360D,0x4)
+	elseif World == 0x04 and Room == 0x11 and Btl == 0x42 then --1000 Heartless
+		if ReadByte(Save+0x360D)&0x4 == 0x4 then
+			BitOr(Save+0x360D,0x8)
+			ReplaceSecondVisitObjectives("HB")
+		else
+			BitOr(Save+0x360D,0x4)
+		end
 	elseif World == 0x04 and Room == 0x01 and Btl == 0x4B then --Sephiroth
 		if ReadByte(Save+0x360D)&0x4 == 0x4 then
 			BitOr(Save+0x360D,0x8)
@@ -3995,6 +4061,11 @@ function ScanObjectives()
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC)) == 367 then
 		print("Broken | Data Xemnas")
 	end
+	--TWILIGHT TOWN
+	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x9A0), OnPC)) == 367 then
+		print("Gold   | Betwixt & Between")
+	end
+	--HUNDRED ACRE WOOD
 end
 
 function CountObjectives()

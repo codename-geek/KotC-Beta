@@ -116,7 +116,7 @@ function _OnFrame()
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC)
 	end
 
-	if (CheckCount - InitialCheckCount) <= 8 then
+	if (CheckCount - InitialCheckCount) <= 7 then
 		GoA_Warning = false
 	end
 

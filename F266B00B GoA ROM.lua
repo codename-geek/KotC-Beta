@@ -4285,6 +4285,7 @@ function CountObjectives()
 	--HUNDRED ACRE WOOD
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x11FA), OnPC)) == 365 then
 		print("Gold   | Yeet the Bear")
+		bossCount = bossCount + 1
 	end
 
 	if bossCount == 10 and objCountInfoBox then

@@ -4113,7 +4113,7 @@ function CountObjectives()
 	end
 	--HOLLOW BASTION
 	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
-		print("Gold   | Story Demyx")
+		print("Silver | Story Demyx")
 		bossCount = bossCount + 1
 	end
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x920), OnPC)) == 365 then
@@ -4189,8 +4189,8 @@ function CountObjectives()
 		print("Silver | Barbossa")
 		bossCount = bossCount + 1
 	end
-	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 365 then
-		print("Gold   | GR 1")
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 363 then
+		print("Silver | GR 1")
 		bossCount = bossCount + 1
 	end
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x3A0), OnPC)) == 365 then

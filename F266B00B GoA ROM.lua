@@ -3810,6 +3810,12 @@ function ScanObjectives()
 		print("Broken | Data Roxas")
 	end
 	--TWILIGHT TOWN
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x9A0), OnPC)) == 365 then
+		print("Gold   | Betwixt & Between")
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x9A0), OnPC)) == 367 then
+		print("Broken | Betwixt & Between")
+	end
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC)) == 365 then
 		print("Gold   | Data Axel")
 	end
@@ -3817,11 +3823,17 @@ function ScanObjectives()
 		print("Broken | Data Axel")
 	end
 	--HOLLOW BASTION
-	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 365 then
-		print("Gold   | Story Demyx")
+	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
+		print("Silver | Story Demyx")
 	end
 	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 367 then
 		print("Broken | Story Demyx")
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x920), OnPC)) == 365 then
+		print("Gold   | 1000 Heartless")
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x920), OnPC)) == 367 then
+		print("Broken | 1000 Heartless")
 	end
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x590), OnPC)) == 365 then
 		print("Gold   | Sephiroth")
@@ -3924,8 +3936,8 @@ function ScanObjectives()
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x360), OnPC)) == 367 then
 		print("Broken | Barbossa")
 	end
-	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 365 then
-		print("Gold   | GR 1")
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 363 then
+		print("Silver | GR 1")
 	end
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x8E0), OnPC)) == 367 then
 		print("Broken | GR 1")
@@ -4061,11 +4073,13 @@ function ScanObjectives()
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC)) == 367 then
 		print("Broken | Data Xemnas")
 	end
-	--TWILIGHT TOWN
-	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x9A0), OnPC)) == 367 then
-		print("Gold   | Betwixt & Between")
-	end
 	--HUNDRED ACRE WOOD
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x11FA), OnPC)) == 365 then
+		print("Gold   | Yeet the Bear")
+	end
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x11FA), OnPC)) == 367 then
+		print("Broken | Yeet the Bear")
+	end
 end
 
 function CountObjectives()
@@ -4089,13 +4103,21 @@ function CountObjectives()
 		bossCount = bossCount + 1
 	end
 	--TWILIGHT TOWN
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x9A0), OnPC)) == 365 then
+		print("Gold   | Betwixt & Between")
+		bossCount = bossCount + 1
+	end
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13AA), OnPC)) == 365 then
 		print("Gold   | Data Axel")
 		bossCount = bossCount + 1
 	end
 	--HOLLOW BASTION
-	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 365 then
+	if TopSlot(ReadShort(BAR(Btl0, 0x6, 0x460), OnPC)) == 363 then
 		print("Gold   | Story Demyx")
+		bossCount = bossCount + 1
+	end
+	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x920), OnPC)) == 365 then
+		print("Gold   | 1000 Heartless")
 		bossCount = bossCount + 1
 	end
 	if TopSlot(ReadInt(BAR(Btl0, 0x6, 0x590), OnPC)) == 365 then
@@ -4259,6 +4281,10 @@ function CountObjectives()
 	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x13B6), OnPC)) == 365 then
 		print("Gold   | Data Xemnas")
 		bossCount = bossCount + 1
+	end
+	--HUNDRED ACRE WOOD
+	if TopSlot(ReadShort(BAR(Sys3, 0x7, 0x11FA), OnPC)) == 365 then
+		print("Gold   | Yeet the Bear")
 	end
 
 	if bossCount == 10 and objCountInfoBox then

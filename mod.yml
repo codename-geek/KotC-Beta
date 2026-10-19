@@ -1,5 +1,5 @@
-title: (BETA) King of the Crown Modpack v1.4
-description: Patch notes | 1.4 -- PATH CHANGES - 100AW Yeet is a Gold Mark, 1k Heartless is a Gold Mark, Story Demyx and GR1 are Silver Marks -- PERKS CHANGES - Exp Boost now gives an extra Emblem and gives +3/+3, Combo Master no longer gives +1/+1, Glide also gives Aerial Dodge ------------------------------------------------------ Place Above Seed for Path w/ Objectives,             Place Below Seed for Darts & Lucky Hitlist ------------------------------------------------------ PS2 Duck Flare | Cutscene Skipper | Accurate Growth Text | Information Box | KotC GoA | Custom AntiCheese | Drive Adjustments | Bonus Speed Up | GoA Perks
+title: (BETA) King of the Crown Modpack v1.5
+description: Patch notes | 1.5 ------------------------------------------------------ PERKS CHANGES - Exp Boost no longer gives +3/+3, Combo Master no longer gives +1/+1, Glide also gets Aerial Dodge and +3/+3 | Small changes - removed older presets, added a WIP text file that just has strings ------------------------------------------------------ Place Above Seed for Path w/ Objectives,             Place Below Seed for Darts & Lucky Hitlist ------------------------------------------------------ PS2 Duck Flare | Cutscene Skipper | Accurate Growth Text | Information Box | KotC GoA | Custom AntiCheese | Drive Adjustments | Bonus Speed Up | GoA Perks
 assets:
 # Lua Scripts
 - name: scripts/CustomAntiCheese.lua

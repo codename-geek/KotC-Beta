@@ -135,8 +135,6 @@ function _OnFrame()
 		else
 			WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC) --Ether
 			WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0003, OnPC) --Ether
-			WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 3) --Power Boost
-			WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 3) --Magic Boost
 		end
 		WriteByte(Save+0x24FE, 2)
 	end
@@ -145,17 +143,17 @@ function _OnFrame()
 		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0187, OnPC) --Air Combo Boost
 		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x021B, OnPC) --Combo Master
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x0186, OnPC) --Combo Boost
-		--if ObjectiveCount ~= 40 then
-		--	WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 1) --Power Boost
-		--	WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 1) --Magic Boost
-		--end
 		WriteByte(Save+0x24FE, 0)
 	end
 	if ReadByte(Save + 0x23DF) & 0x2 == 0x2 and not OpenedChest then
 		--print("Opened Right Chest")
-		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0003, OnPC)
-		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0067, OnPC)
+		WriteShort(BAR(Sys3, 0x7, 0xECA), 0x0003, OnPC)
+		WriteShort(BAR(Sys3, 0x7, 0xED6), 0x0067, OnPC) --Aerial Dodge 2
 		WriteShort(BAR(Sys3, 0x7, 0xEBE), 0x006B, OnPC) --Glide 2
+		if ObjectiveCount ~= 40 then                                      
+        	WriteByte(Save+0x24F9,ReadByte(Save+0x24F9) + 3) --Power Boost
+        	WriteByte(Save+0x24FA,ReadByte(Save+0x24FA) + 3) --Magic Boost
+		end                                                               
 		WriteByte(Save+0x24FE, 1)
 	end
 	
